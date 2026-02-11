@@ -27,7 +27,7 @@ For complete documentation, guides, and examples:
 - [Quick Start Guide](#quick-start) - Get up and running in minutes
 - [Available Commands](#available-commands) - Complete command reference
 - [Configuration Guide](#configuration) - Settings and project configuration
-- [Troubleshooting & FAQ](#troubleshooting) - Common issues and solutions
+- [Troubleshooting & FAQ](#troubleshooting--faq) - Common issues and solutions
 
 ### Quick Start
 
