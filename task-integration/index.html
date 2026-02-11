@@ -1,0 +1,391 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><script>(function(){try{var stored=null;try{stored=localStorage.getItem('theme')}catch(e){stored=null}var prefersDark=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;var theme=stored?stored:(prefersDark?'dark':'light');document.documentElement.setAttribute('data-theme',theme);}catch(err){} })();</script>
+<style id="initial-theme-vars">html[data-theme="dark"]{--navbar-background-color:#1a1d23;--navbar-background-color-hover:#2d3139;--navbar-current-background-color:#2d3139;--navbar-current-background-color-hover:#3d4149;--navbar-level-1-color:#c9d1d9;--navbar-heading-color:#c9d1d9;--onsemi-light:#0d1117;--onsemi-text:#e8e9ea}html[data-theme="light"]{--navbar-background-color:#fcfcfd;--navbar-background-color-hover:#f8f9fa;--navbar-current-background-color:#f8f9fa;--navbar-current-background-color-hover:#f1f3f5;--navbar-level-1-color:#212529;--navbar-heading-color:#1d3546;--onsemi-light:#fcfcfd;--onsemi-text:#212529}</style><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task Integration &mdash; onsemi Studio for Visual Studio Code</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/light.css?v=ddb3986d" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/dark.css?v=963d01b0" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=ad55038f" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+    <link rel="canonical" href="https://onsemiconductor.github.io/vscode-onsemi-studio/task-integration/index.html" />
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=6593fba4"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/js/custom.js?v=99d60d1b"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="../_static/togglebutton.js?v=1ae7504c"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="IntelliSense Configuration" href="../intellisense/index.html" />
+    <link rel="prev" title="Configuration" href="../configuration/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form-sidebar" class="wy-form" action="../search.html" method="get">
+    <input type="search" name="q" placeholder="Search docs" aria-label="Search docs" />
+  </form>
+</div>
+
+<script>
+(function () {
+  var defaultEngine = window.location.pathname.includes('/latest') ? 'google' : 'builtin';
+  var currentEngine = localStorage.getItem('searchEngine') || defaultEngine;
+
+  function updatePlaceholder() {
+    var input = document.querySelector('.wy-side-nav-search input[type="search"]');
+    if (input) {
+      input.placeholder = currentEngine === 'google' ? 'Search docs (powered by Google)' : 'Search docs';
+    }
+  }
+
+  function updateSelected() {}
+
+  window.selectSearchEngine = function() {};
+  window.toggleSearchMenu = function() {};
+
+  // Initialize
+  updatePlaceholder();
+  
+  // Set initial form action and ensure proper navigation
+  var form = document.getElementById('rtd-search-form-sidebar');
+  if (form) {
+    var gsearchPath = '../gsearch.html';
+    var searchPath = '../search.html';
+    
+    // If we're on gsearch.html, use gsearch.html instead of relative path
+    if (window.location.pathname.includes('/gsearch.html')) {
+      gsearchPath = 'gsearch.html';
+      searchPath = 'search.html';
+    }
+    
+    form.action = currentEngine === 'google' ? gsearchPath : searchPath;
+    
+    // Update action on form submit to ensure correct path
+    form.addEventListener('submit', function(e) {
+      var currentPath = currentEngine === 'google' ? gsearchPath : searchPath;
+      form.action = currentPath;
+    });
+  }
+})();
+</script>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quick-start/index.html">Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../quick-start/index.html#workspace-and-tools-setup-zephyr-projects-only">Workspace and Tools Setup (Zephyr Projects Only)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../quick-start/index.html#express-mode-workflow-recommended">Express Mode Workflow (Recommended)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../quick-start/index.html#import-application-zephyr-projects-only">Import Application (Zephyr Projects Only)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quick-start/index.html#create-new-application-zephyr-projects-only">Create New Application (Zephyr Projects Only)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quick-start/index.html#working-with-projects">Working with Projects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../quick-start/index.html#application-view">Application View</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../quick-start/index.html#project-terminal">Project Terminal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quick-start/index.html#configure-project-settings">Configure Project Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quick-start/index.html#debugging-your-application">Debugging Your Application</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../quick-start/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../quick-start/index.html#quick-start-debugging">Quick Start Debugging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../quick-start/index.html#configuring-debug-settings">Configuring Debug Settings</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../quick-start/index.html#target-tab">Target Tab</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../quick-start/index.html#initialization-tab">Initialization Tab</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../quick-start/index.html#gdb-settings-tab">GDB Settings Tab</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../quick-start/index.html#peripheral-tab">Peripheral Tab</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../quick-start/index.html#starting-the-debug-session">Starting the Debug Session</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../quick-start/index.html#troubleshooting-debug-issues">Troubleshooting Debug Issues</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">Available Commands</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../commands/index.html#setup-configuration-commands">Setup &amp; Configuration Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../commands/index.html#project-commands">Project Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../commands/index.html#west-commands-zephyr">West Commands (Zephyr)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../commands/index.html#intellisense-commands">IntelliSense Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration/index.html">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../configuration/index.html#global-settings-user-workspace">Global Settings (User/Workspace)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../configuration/index.html#onsemi-repositories">onsemi.repositories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration/index.html#onsemi-certificatepath">onsemi.certificatePath</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration/index.html#onsemi-allowinsecuretls">onsemi.allowInsecureTls</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration/index.html#project-specific-settings-folder-resource">Project-Specific Settings (Folder/Resource)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../configuration/index.html#onsemi-workspacepath">onsemi.workspacePath</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration/index.html#onsemi-toolchain">onsemi.toolchain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration/index.html#onsemi-venv-path">onsemi.venv.path</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration/index.html#onsemi-args">onsemi.args</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration/index.html#onsemi-envvars">onsemi.envVars</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration/index.html#onsemi-build-configurations">onsemi.build.configurations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration/index.html#intellisense-settings">IntelliSense Settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../configuration/index.html#onsemi-intellisenseprovider">onsemi.intelliSenseProvider</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration/index.html#onsemi-autogenerateclangdconfig">onsemi.autoGenerateClangdConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration/index.html#onsemi-disableintellisense">onsemi.disableIntelliSense</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration/index.html#complete-project-settings-example">Complete Project Settings Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Task Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#zephyr-task-provider">Zephyr Task Provider</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cmake-task-provider">CMake Task Provider</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../intellisense/index.html">IntelliSense Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intellisense/index.html#switching-intellisense-provider">Switching IntelliSense Provider</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intellisense/index.html#refresh-configuration">Refresh Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../output-files/index.html">Working with Output Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../output-files/index.html#using-menuconfig-guiconfig-zephyr">Using Menuconfig/Guiconfig (Zephyr)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/index.html#common-issues">Common Issues</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/index.html#build-fails-west-not-found">Build Fails: “West not found”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/index.html#intellisense-not-working">IntelliSense Not Working</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/index.html#debugging-fails-no-active-elf-file">Debugging Fails: “No Active ELF File”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/index.html#debug-configuration-not-found">Debug Configuration Not Found</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/index.html#board-not-found">Board Not Found</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/index.html#toolchain-not-detected">Toolchain Not Detected</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/index.html#output-shows-certificate-errors">Output Shows Certificate Errors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/index.html#j-link-gdb-server-not-found">J-Link GDB Server Not Found</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/index.html#long-path-errors-on-windows">Long Path Errors on Windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/index.html#west-commands-fail-after-renaming-workspace">West Commands Fail After Renaming Workspace</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions (FAQ)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../faq/index.html#general-questions">General Questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../faq/index.html#debugging">Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../faq/index.html#zephyr-specific">Zephyr-Specific</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../faq/index.html#cmake-specific">CMake-Specific</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../disclaimer/index.html">Disclaimer</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">onsemi Studio for Visual Studio Code</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Task Integration</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="task-integration">
+<h1>Task Integration<a class="headerlink" href="#task-integration" title="Link to this heading"></a></h1>
+<p>The extension provides custom task providers for both Zephyr and CMake projects.</p>
+<section id="zephyr-task-provider">
+<h2>Zephyr Task Provider<a class="headerlink" href="#zephyr-task-provider" title="Link to this heading"></a></h2>
+<p><strong>Type</strong>: <code class="docutils literal notranslate"><span class="pre">onsemi.zephyr</span></code></p>
+<p><strong>Available Commands</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">build</span></code>: Build the project</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flash</span></code>: Flash firmware to device</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">clean</span></code>: Clean build artifacts</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">menuconfig</span></code>: Open Kconfig menuconfig</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">guiconfig</span></code>: Open Kconfig GUI</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ram-report</span></code>: Generate RAM usage report</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rom-report</span></code>: Generate ROM usage report</p></li>
+</ul>
+<p><strong>Task Definition Example</strong> (<code class="docutils literal notranslate"><span class="pre">tasks.json</span></code>):</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2.0.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;tasks&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;onsemi.zephyr&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Build Zephyr Project&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;projectPath&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${workspaceFolder}&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;build&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;configName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;debug&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;--pristine&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;options&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;cwd&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${workspaceFolder}&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;env&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CONF_FILE&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;prj_debug.conf&quot;</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">]</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;problemMatcher&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;$gcc&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;group&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;kind&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;build&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;isDefault&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;onsemi.zephyr&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Flash to Device&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;projectPath&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${workspaceFolder}&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;flash&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;configName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;debug&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;problemMatcher&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Task Properties</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">projectPath</span></code> (required): Path to the project folder</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">command</span></code> (required): Command to execute (build, flash, clean, etc.)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">args</span></code>: Additional command-line arguments</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">configName</span></code>: Build configuration name to use</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">options.cwd</span></code>: Working directory for the task</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">options.env</span></code>: Additional environment variables</p></li>
+</ul>
+</section>
+<section id="cmake-task-provider">
+<h2>CMake Task Provider<a class="headerlink" href="#cmake-task-provider" title="Link to this heading"></a></h2>
+<p><strong>Type</strong>: <code class="docutils literal notranslate"><span class="pre">onsemi.cmake</span></code></p>
+<p><strong>Available Commands</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">configure</span></code>: Configure CMake project</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">build</span></code>: Build the project</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">clean</span></code>: Clean build artifacts</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cleanRebuild</span></code>: Clean and rebuild</p></li>
+</ul>
+<p><strong>Task Definition Example</strong> (<code class="docutils literal notranslate"><span class="pre">tasks.json</span></code>):</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2.0.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;tasks&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;onsemi.cmake&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Configure CMake&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;projectPath&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${workspaceFolder}&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;configure&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;configName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Debug-CM33&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;buildType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;generator&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Ninja&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;toolchainFile&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cmake/arm-toolchain.cmake&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;cacheVars&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CMAKE_EXPORT_COMPILE_COMMANDS&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ON&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;problemMatcher&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;$gcc&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;onsemi.cmake&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Build CMake Project&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;projectPath&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${workspaceFolder}&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;build&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;configName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Debug-CM33&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;buildType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;targets&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;blinky&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;problemMatcher&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;$gcc&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;group&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;kind&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;build&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;isDefault&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Task Properties</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">projectPath</span></code> (required): Absolute path to the project folder</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">command</span></code> (required): Command to execute</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">args</span></code>: Additional arguments</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">configName</span></code>: Build configuration name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">buildType</span></code>: CMake build type (Debug, Release, etc.)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">generator</span></code>: CMake generator (Ninja, Unix Makefiles, etc.)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">toolchainFile</span></code>: Absolute path to CMake toolchain file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cacheVars</span></code>: CMake cache variables</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">configurationPreset</span></code>: CMake configuration preset name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">buildPreset</span></code>: CMake build preset name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">targets</span></code>: Build targets to compile</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">options.cwd</span></code>: Working directory</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">options.env</span></code>: Environment variables</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../configuration/index.html" class="btn btn-neutral float-left" title="Configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../intellisense/index.html" class="btn btn-neutral float-right" title="IntelliSense Configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, onsemi.
+      <span class="lastupdated">Last updated on Feb 11, 2026.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

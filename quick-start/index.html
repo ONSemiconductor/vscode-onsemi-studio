@@ -1,0 +1,668 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><script>(function(){try{var stored=null;try{stored=localStorage.getItem('theme')}catch(e){stored=null}var prefersDark=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;var theme=stored?stored:(prefersDark?'dark':'light');document.documentElement.setAttribute('data-theme',theme);}catch(err){} })();</script>
+<style id="initial-theme-vars">html[data-theme="dark"]{--navbar-background-color:#1a1d23;--navbar-background-color-hover:#2d3139;--navbar-current-background-color:#2d3139;--navbar-current-background-color-hover:#3d4149;--navbar-level-1-color:#c9d1d9;--navbar-heading-color:#c9d1d9;--onsemi-light:#0d1117;--onsemi-text:#e8e9ea}html[data-theme="light"]{--navbar-background-color:#fcfcfd;--navbar-background-color-hover:#f8f9fa;--navbar-current-background-color:#f8f9fa;--navbar-current-background-color-hover:#f1f3f5;--navbar-level-1-color:#212529;--navbar-heading-color:#1d3546;--onsemi-light:#fcfcfd;--onsemi-text:#212529}</style><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quick Start &mdash; onsemi Studio for Visual Studio Code</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/light.css?v=ddb3986d" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/dark.css?v=963d01b0" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=ad55038f" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+    <link rel="canonical" href="https://onsemiconductor.github.io/vscode-onsemi-studio/quick-start/index.html" />
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=6593fba4"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/js/custom.js?v=99d60d1b"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="../_static/togglebutton.js?v=1ae7504c"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Available Commands" href="../commands/index.html" />
+    <link rel="prev" title="onsemi Studio for Visual Studio Code" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form-sidebar" class="wy-form" action="../search.html" method="get">
+    <input type="search" name="q" placeholder="Search docs" aria-label="Search docs" />
+  </form>
+</div>
+
+<script>
+(function () {
+  var defaultEngine = window.location.pathname.includes('/latest') ? 'google' : 'builtin';
+  var currentEngine = localStorage.getItem('searchEngine') || defaultEngine;
+
+  function updatePlaceholder() {
+    var input = document.querySelector('.wy-side-nav-search input[type="search"]');
+    if (input) {
+      input.placeholder = currentEngine === 'google' ? 'Search docs (powered by Google)' : 'Search docs';
+    }
+  }
+
+  function updateSelected() {}
+
+  window.selectSearchEngine = function() {};
+  window.toggleSearchMenu = function() {};
+
+  // Initialize
+  updatePlaceholder();
+  
+  // Set initial form action and ensure proper navigation
+  var form = document.getElementById('rtd-search-form-sidebar');
+  if (form) {
+    var gsearchPath = '../gsearch.html';
+    var searchPath = '../search.html';
+    
+    // If we're on gsearch.html, use gsearch.html instead of relative path
+    if (window.location.pathname.includes('/gsearch.html')) {
+      gsearchPath = 'gsearch.html';
+      searchPath = 'search.html';
+    }
+    
+    form.action = currentEngine === 'google' ? gsearchPath : searchPath;
+    
+    // Update action on form submit to ensure correct path
+    form.addEventListener('submit', function(e) {
+      var currentPath = currentEngine === 'google' ? gsearchPath : searchPath;
+      form.action = currentPath;
+    });
+  }
+})();
+</script>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#workspace-and-tools-setup-zephyr-projects-only">Workspace and Tools Setup (Zephyr Projects Only)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#express-mode-workflow-recommended">Express Mode Workflow (Recommended)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#import-application-zephyr-projects-only">Import Application (Zephyr Projects Only)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-new-application-zephyr-projects-only">Create New Application (Zephyr Projects Only)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#working-with-projects">Working with Projects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#application-view">Application View</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#project-terminal">Project Terminal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configure-project-settings">Configure Project Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#debugging-your-application">Debugging Your Application</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#quick-start-debugging">Quick Start Debugging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuring-debug-settings">Configuring Debug Settings</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#target-tab">Target Tab</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#initialization-tab">Initialization Tab</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gdb-settings-tab">GDB Settings Tab</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#peripheral-tab">Peripheral Tab</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#starting-the-debug-session">Starting the Debug Session</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#troubleshooting-debug-issues">Troubleshooting Debug Issues</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">Available Commands</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../commands/index.html#setup-configuration-commands">Setup &amp; Configuration Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../commands/index.html#project-commands">Project Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../commands/index.html#west-commands-zephyr">West Commands (Zephyr)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../commands/index.html#intellisense-commands">IntelliSense Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration/index.html">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../configuration/index.html#global-settings-user-workspace">Global Settings (User/Workspace)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../configuration/index.html#onsemi-repositories">onsemi.repositories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration/index.html#onsemi-certificatepath">onsemi.certificatePath</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration/index.html#onsemi-allowinsecuretls">onsemi.allowInsecureTls</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration/index.html#project-specific-settings-folder-resource">Project-Specific Settings (Folder/Resource)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../configuration/index.html#onsemi-workspacepath">onsemi.workspacePath</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration/index.html#onsemi-toolchain">onsemi.toolchain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration/index.html#onsemi-venv-path">onsemi.venv.path</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration/index.html#onsemi-args">onsemi.args</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration/index.html#onsemi-envvars">onsemi.envVars</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration/index.html#onsemi-build-configurations">onsemi.build.configurations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration/index.html#intellisense-settings">IntelliSense Settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../configuration/index.html#onsemi-intellisenseprovider">onsemi.intelliSenseProvider</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration/index.html#onsemi-autogenerateclangdconfig">onsemi.autoGenerateClangdConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration/index.html#onsemi-disableintellisense">onsemi.disableIntelliSense</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration/index.html#complete-project-settings-example">Complete Project Settings Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../task-integration/index.html">Task Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../task-integration/index.html#zephyr-task-provider">Zephyr Task Provider</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../task-integration/index.html#cmake-task-provider">CMake Task Provider</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../intellisense/index.html">IntelliSense Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intellisense/index.html#switching-intellisense-provider">Switching IntelliSense Provider</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intellisense/index.html#refresh-configuration">Refresh Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../output-files/index.html">Working with Output Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../output-files/index.html#using-menuconfig-guiconfig-zephyr">Using Menuconfig/Guiconfig (Zephyr)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/index.html#common-issues">Common Issues</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/index.html#build-fails-west-not-found">Build Fails: “West not found”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/index.html#intellisense-not-working">IntelliSense Not Working</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/index.html#debugging-fails-no-active-elf-file">Debugging Fails: “No Active ELF File”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/index.html#debug-configuration-not-found">Debug Configuration Not Found</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/index.html#board-not-found">Board Not Found</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/index.html#toolchain-not-detected">Toolchain Not Detected</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/index.html#output-shows-certificate-errors">Output Shows Certificate Errors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/index.html#j-link-gdb-server-not-found">J-Link GDB Server Not Found</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/index.html#long-path-errors-on-windows">Long Path Errors on Windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../troubleshooting/index.html#west-commands-fail-after-renaming-workspace">West Commands Fail After Renaming Workspace</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/index.html">Frequently Asked Questions (FAQ)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../faq/index.html#general-questions">General Questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../faq/index.html#debugging">Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../faq/index.html#zephyr-specific">Zephyr-Specific</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../faq/index.html#cmake-specific">CMake-Specific</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../disclaimer/index.html">Disclaimer</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">onsemi Studio for Visual Studio Code</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Quick Start</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="quick-start">
+<h1>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Workspace Setup, Import Application, and Create New Application panels are designed for <strong>Zephyr projects only</strong>. While CMake projects can access these panels, they will not function correctly. For CMake projects, use <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">→</span> <span class="pre">Open</span> <span class="pre">Folder</span></code> to open your project directory, then configure settings using the <strong>Configure Settings Panel</strong> available under <strong>Configuration</strong> in the onsemi Studio Activity Bar, or manually edit <code class="docutils literal notranslate"><span class="pre">.vscode/settings.json</span></code>.</p>
+</div>
+<section id="workspace-and-tools-setup-zephyr-projects-only">
+<h2>Workspace and Tools Setup (Zephyr Projects Only)<a class="headerlink" href="#workspace-and-tools-setup-zephyr-projects-only" title="Link to this heading"></a></h2>
+<p>Open the Command Palette (<code class="docutils literal notranslate"><span class="pre">Ctrl+Shift+P</span></code>) and run:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>onsemi: Workspace and Tools Setup
+</pre></div>
+</div>
+<p>This opens the interactive setup panel with two operation modes:</p>
+<ul class="simple">
+<li><p><strong>Express Mode</strong> - Fully automated installation (recommended for first-time users)</p></li>
+<li><p><strong>Advanced Mode</strong> - Granular control over individual tool selection and installation</p></li>
+</ul>
+<section id="express-mode-workflow-recommended">
+<h3>Express Mode Workflow (Recommended)<a class="headerlink" href="#express-mode-workflow-recommended" title="Link to this heading"></a></h3>
+<p>Express Mode streamlines the setup process by automatically installing all required tools. The panel guides you through three main steps:</p>
+<p><strong>Step 1: Configure Repository</strong></p>
+<p>Select your workspace source type:</p>
+<ul class="simple">
+<li><p><strong>GitHub Repository</strong>: Enter repository URL and branch/tag, choose installation location, then click <strong>“Install”</strong> to clone</p></li>
+<li><p><strong>Local Archive</strong>: Browse to a zipped SDK folder, choose extraction location, then click <strong>“Install”</strong> to unzip and register</p></li>
+<li><p><strong>Local Workspace</strong>: Browse to an existing SDK/repository folder to register with the extension</p></li>
+</ul>
+<figure class="align-center" id="id1">
+<span id="fig-express-mode-config"></span><a class="reference internal image-reference" href="../_images/express-mode-config.png"><img alt="Express mode configuration panel showing repository setup" src="../_images/express-mode-config.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Express mode configuration panel showing repository setup</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p><strong>GitHub Authentication</strong></p>
+<p>If accessing private repositories, you’ll be prompted to authenticate:</p>
+<ul class="simple">
+<li><p>Complete the authentication steps in your browser</p></li>
+<li><p>Once authenticated, return to VS Code</p></li>
+<li><p>The extension will proceed with repository cloning</p></li>
+</ul>
+<figure class="align-center" id="id2">
+<span id="fig-github-auth"></span><a class="reference internal image-reference" href="../_images/github-auth.png"><img alt="GitHub authentication during workspace setup" src="../_images/github-auth.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">GitHub authentication during workspace setup</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p><strong>Step 2: Configure Tools</strong></p>
+<ul class="simple">
+<li><p>The panel automatically identifies required development tools</p></li>
+<li><p>All necessary compilers, debuggers, and dependencies are installed automatically</p></li>
+<li><p>No manual tool selection needed</p></li>
+</ul>
+<figure class="align-center" id="id3">
+<span id="fig-configure-tools"></span><a class="reference internal image-reference" href="../_images/configure-tools.png"><img alt="Configure tools installation progress" src="../_images/configure-tools.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Configure tools installation progress</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p><strong>Step 3: Finish</strong></p>
+<ul class="simple">
+<li><p>Verify installation summary</p></li>
+<li><p>Complete setup and begin working with your projects</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>For CMake Projects</strong>: Use <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">→</span> <span class="pre">Open</span> <span class="pre">Folder</span></code> in VS Code to open your existing CMake project directory. Then use the Configure Settings Panel UI (onsemi Studio Activity Bar → Configuration → Configuration Settings) to set up your toolchain and build configurations.</p>
+</div>
+</section>
+</section>
+<section id="import-application-zephyr-projects-only">
+<h2>Import Application (Zephyr Projects Only)<a class="headerlink" href="#import-application-zephyr-projects-only" title="Link to this heading"></a></h2>
+<p>Open the Command Palette (<code class="docutils literal notranslate"><span class="pre">Ctrl+Shift+P</span></code>) and run:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>onsemi: Import Application
+</pre></div>
+</div>
+<p>The import panel guides you through:</p>
+<ul class="simple">
+<li><p><strong>Select Workspace</strong>: Choose from configured repositories or browse for local folders/archives</p></li>
+<li><p><strong>Choose Toolchain</strong>: Select an existing toolchain or browse for toolchain installation path</p></li>
+<li><p><strong>Select Board</strong> (Zephyr only): Browse and select target board from available boards</p></li>
+<li><p><strong>Choose Sample</strong>: Browse available sample applications from the repository</p></li>
+</ul>
+<p>After import, the project is added to your VS Code workspace with:</p>
+<ul class="simple">
+<li><p>Configured build settings in <code class="docutils literal notranslate"><span class="pre">.vscode/settings.json</span></code></p></li>
+<li><p>Selected toolchain and board</p></li>
+</ul>
+<figure class="align-center" id="id4">
+<span id="fig-import-application"></span><a class="reference internal image-reference" href="../_images/import-application.png"><img alt="Import Application panel showing workspace and sample selection" src="../_images/import-application.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Import Application panel showing workspace and sample selection</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Copy Sample Option</strong>: When importing, you can enable the “Copy Sample” option to copy the sample to a different directory. This helps avoid long path issues on Windows and provides better organization.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>For CMake Projects</strong>: Use <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">→</span> <span class="pre">Open</span> <span class="pre">Folder</span></code> to open your existing CMake project. Then use the Configure Settings Panel UI (onsemi Studio Activity Bar → Configuration → Configuration Settings) or manually edit <code class="docutils literal notranslate"><span class="pre">.vscode/settings.json</span></code> with your toolchain and build settings.</p>
+</div>
+</section>
+<section id="create-new-application-zephyr-projects-only">
+<h2>Create New Application (Zephyr Projects Only)<a class="headerlink" href="#create-new-application-zephyr-projects-only" title="Link to this heading"></a></h2>
+<p>Open the Command Palette (<code class="docutils literal notranslate"><span class="pre">Ctrl+Shift+P</span></code>) and run:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>onsemi: Create New Application
+</pre></div>
+</div>
+<p>Create a new application from scratch:</p>
+<ul class="simple">
+<li><p><strong>Select Workspace</strong>: Choose the workspace/repository for the new application</p></li>
+<li><p><strong>Choose Toolchain</strong>: Select toolchain for building</p></li>
+<li><p><strong>Select Board</strong>: Choose target board</p></li>
+<li><p><strong>Application Name</strong>: Enter name for your new application</p></li>
+<li><p><strong>Configure Settings</strong>: Set up initial build configurations</p></li>
+</ul>
+<figure class="align-center" id="id5">
+<span id="fig-create-new-application"></span><a class="reference internal image-reference" href="../_images/create-new-application.png"><img alt="Create New Application panel" src="../_images/create-new-application.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Create New Application panel</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>For CMake Projects</strong>: Create your CMake project structure manually, then use <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">→</span> <span class="pre">Open</span> <span class="pre">Folder</span></code> to open it in VS Code. Use the Configure Settings Panel UI (onsemi Studio Activity Bar → Configuration → Configuration Settings) or manually edit <code class="docutils literal notranslate"><span class="pre">.vscode/settings.json</span></code> with your build settings.</p>
+</div>
+</section>
+<section id="working-with-projects">
+<h2>Working with Projects<a class="headerlink" href="#working-with-projects" title="Link to this heading"></a></h2>
+<p>Once you have projects in your workspace, you can:</p>
+<p><strong>From Explorer and onsemi Studio Activity Bar:</strong></p>
+<p>Right-click on project folders to access:</p>
+<ul class="simple">
+<li><p>Build, Clean, Rebuild</p></li>
+<li><p>Configure (CMake projects)</p></li>
+<li><p>Flash (Zephyr projects)</p></li>
+<li><p>Debug (Start debugging with active ELF)</p></li>
+<li><p>Memory Reports (Zephyr projects)</p></li>
+<li><p>Debug Files submenu:
+- Select Active ELF
+- Clear Active ELF
+- Rescan ELFs</p></li>
+<li><p>Open in onsemi Studio Terminal (Opens terminal with proper environment)</p></li>
+</ul>
+<section id="application-view">
+<h3>Application View<a class="headerlink" href="#application-view" title="Link to this heading"></a></h3>
+<p>After importing or creating projects, they appear in the <strong>Application View</strong> with an organized structure:</p>
+<ul class="simple">
+<li><p><strong>Configuration</strong></p>
+<ul>
+<li><p><strong>Active Configuration</strong>: Quick selector for build configurations</p></li>
+<li><p><strong>Board</strong>: Change target board (Zephyr Projects)</p></li>
+<li><p><strong>Toolchain</strong>: Switch between registered toolchains</p></li>
+</ul>
+</li>
+<li><p><strong>Actions</strong></p>
+<ul>
+<li><p><strong>Build</strong>: Compile the project</p></li>
+<li><p><strong>Clean</strong>: Remove build artifacts</p></li>
+<li><p><strong>Clean and Rebuild</strong>: Clean then build</p></li>
+<li><p><strong>Flash</strong>: Load firmware to the board (Zephyr Projects)</p></li>
+<li><p><strong>Configure</strong>: Configure the project (Bare-metal CMake Projects)</p></li>
+<li><p><strong>Debug</strong>: Open Debug Configuration Panel</p></li>
+<li><p><strong>KConfig Config</strong>: Run menuconfig or guiconfig (Zephyr Projects)</p></li>
+</ul>
+</li>
+<li><p><strong>Documentation</strong>: Text, RST, and MD files</p></li>
+<li><p><strong>Header Files</strong>: All <code class="docutils literal notranslate"><span class="pre">.h</span></code> files</p></li>
+<li><p><strong>Source Files</strong>: All <code class="docutils literal notranslate"><span class="pre">.c</span></code> files</p></li>
+<li><p><strong>Output Files</strong>: Build outputs (<code class="docutils literal notranslate"><span class="pre">*.elf</span></code>, <code class="docutils literal notranslate"><span class="pre">*.map</span></code>, <code class="docutils literal notranslate"><span class="pre">*.dts</span></code>, <code class="docutils literal notranslate"><span class="pre">.config</span></code>)</p></li>
+<li><p><strong>Components</strong>: All source files compiled into the final output</p></li>
+<li><p><strong>Configuration</strong>: Kconfig and DeviceTree files (Zephyr Projects)</p></li>
+</ul>
+<figure class="align-center" id="id6">
+<span id="fig-application-view"></span><a class="reference internal image-reference" href="../_images/application-view.png"><img alt="Application view showing project structure and actions" src="../_images/application-view.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Application view showing project structure and actions</span><a class="headerlink" href="#id6" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="project-terminal">
+<h2>Project Terminal<a class="headerlink" href="#project-terminal" title="Link to this heading"></a></h2>
+<p>Open an integrated terminal with your project’s environment already configured:</p>
+<p><strong>Command</strong>: Right-click project folder → “Open Terminal”</p>
+<p>The terminal automatically configures:</p>
+<ul class="simple">
+<li><p><strong>PATH Environment</strong>: Includes toolchain binaries and required tools</p></li>
+<li><p><strong>Python Virtual Environment</strong>: Auto-activated for projects (if configured in <code class="docutils literal notranslate"><span class="pre">.vscode/settings.json</span></code>)</p></li>
+<li><p><strong>Project Environment Variables</strong>: All project-specific variables from settings</p></li>
+<li><p><strong>Working Directory</strong>: Set to your project root</p></li>
+</ul>
+</section>
+<section id="configure-project-settings">
+<h2>Configure Project Settings<a class="headerlink" href="#configure-project-settings" title="Link to this heading"></a></h2>
+<p>For more control over project settings:</p>
+<ol class="arabic simple">
+<li><p>Expand your project in the Application View</p></li>
+<li><p>Under <strong>Configuration</strong>, click <strong>“Configure Settings”</strong></p></li>
+<li><p>The <strong>Configure Project Settings Panel</strong> opens</p></li>
+</ol>
+<figure class="align-center" id="id7">
+<span id="fig-configure-settings"></span><a class="reference internal image-reference" href="../_images/configure-settings.png"><img alt="Configure Project Settings panel" src="../_images/configure-settings.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Configure Project Settings panel</span><a class="headerlink" href="#id7" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>The panel provides:</p>
+<ul class="simple">
+<li><p><strong>Root Project Path</strong>: Points to the root project directory</p></li>
+<li><p><strong>Toolchain Path</strong>: Path to your toolchain installation</p></li>
+<li><p><strong>Python Environment Path</strong>: Path to the virtual environment folder</p></li>
+<li><p><strong>Build Configurations</strong>: Manage multiple build configurations</p>
+<ul>
+<li><p>Add new configurations using the <strong>“+”</strong> button</p></li>
+<li><p>Clone existing configurations using the <strong>“Clone”</strong> button</p></li>
+<li><p>Toggle <strong>Active</strong> switch to set the active configuration</p></li>
+<li><p>Configure build-specific settings (board, sysbuild, pristine mode, args, environment variables)</p></li>
+</ul>
+</li>
+<li><p><strong>Save Changes</strong>: Click the <strong>“Save”</strong> button after making changes</p></li>
+</ul>
+</section>
+<section id="debugging-your-application">
+<h2>Debugging Your Application<a class="headerlink" href="#debugging-your-application" title="Link to this heading"></a></h2>
+<section id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>J-Link debugger connected to your target board</p></li>
+<li><p>J-Link GDB Server (<code class="docutils literal notranslate"><span class="pre">JLinkGDBServerCL.exe</span></code>) must be in system PATH or manually specified</p></li>
+</ul>
+</section>
+<section id="quick-start-debugging">
+<h3>Quick Start Debugging<a class="headerlink" href="#quick-start-debugging" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Build your project</strong> first to generate the ELF file</p></li>
+<li><p><strong>Select Active ELF</strong> (automatic or manual):</p>
+<ul class="simple">
+<li><p>Automatic: The extension auto-detects and selects the ELF file from your build directory</p></li>
+<li><p>Manual: Right-click project → Debug Files → Select Active ELF</p></li>
+</ul>
+</li>
+<li><p><strong>Run the Debug command to open the Debug Configuration Panel</strong>:</p>
+<ul class="simple">
+<li><p>Right-click project folder → onsemi: Project: Debug</p></li>
+</ul>
+</li>
+</ol>
+<p>The panel provides:</p>
+<ul class="simple">
+<li><p>Configuration management (create, edit, duplicate, delete)</p></li>
+<li><p>Visual editors for general settings, target configuration, runtime options, command customization, UART settings, and peripheral inspector</p></li>
+<li><p>Real-time JSON preview</p></li>
+<li><p>Task integration</p></li>
+</ul>
+</section>
+<section id="configuring-debug-settings">
+<h3>Configuring Debug Settings<a class="headerlink" href="#configuring-debug-settings" title="Link to this heading"></a></h3>
+<section id="target-tab">
+<h4>Target Tab<a class="headerlink" href="#target-tab" title="Link to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p><strong>Device Name</strong>: Enter your target device name (e.g., <code class="docutils literal notranslate"><span class="pre">Cortex-M0+</span></code>)</p></li>
+<li><p><strong>GDB Server Path</strong>: Verify the path to <code class="docutils literal notranslate"><span class="pre">JLinkGDBServerCL.exe</span></code></p>
+<ul class="simple">
+<li><p>Default: Should be auto-detected if J-Link is in PATH</p></li>
+<li><p>If not found, click <strong>Browse</strong> to locate it</p></li>
+</ul>
+</li>
+<li><p><strong>Connection Settings</strong>:</p>
+<ul class="simple">
+<li><p><strong>Host</strong>: <code class="docutils literal notranslate"><span class="pre">localhost</span></code> (default)</p></li>
+<li><p><strong>Port</strong>: <code class="docutils literal notranslate"><span class="pre">2331</span></code> (default)</p></li>
+</ul>
+</li>
+</ol>
+<figure class="align-center" id="id8">
+<span id="fig-debug-target-tab"></span><a class="reference internal image-reference" href="../_images/debug-target-tab.png"><img alt="Debug Configuration Panel - Target Configuration" src="../_images/debug-target-tab.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Debug Configuration Panel - Target Configuration</span><a class="headerlink" href="#id8" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="initialization-tab">
+<h4>Initialization Tab<a class="headerlink" href="#initialization-tab" title="Link to this heading"></a></h4>
+<p>Configure initialization settings for your target device:</p>
+<ol class="arabic">
+<li><p><strong>Reset Command</strong>: Command sent to reset the target device</p>
+<ul class="simple">
+<li><p><strong>Reset Timing</strong>: Controls when the target device is reset during programming</p>
+<ul>
+<li><p><strong>Before Programming</strong>: Reset before loading program</p></li>
+<li><p><strong>After Programming</strong>: Reset after loading program</p></li>
+<li><p><strong>Always</strong>: Reset before and after programming</p></li>
+<li><p><strong>Never</strong>: No automatic reset</p></li>
+</ul>
+</li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Use “Never” when running code from RAM or when reset interferes with debug session.</p>
+</div>
+</li>
+<li><p><strong>Initialization Commands</strong>: Commands executed after connecting to target but before running</p>
+<ul class="simple">
+<li><p><strong>Command Generation Options</strong>: Automatic generation of common GDB commands</p>
+<ul>
+<li><p><strong>Include Load Command</strong>: Load program <code class="docutils literal notranslate"><span class="pre">load</span></code> to target</p></li>
+<li><p><strong>Set Program Counter</strong>: Set CPU program counter to specific address or symbol (e.g., <code class="docutils literal notranslate"><span class="pre">Reset_Handler</span></code>, <code class="docutils literal notranslate"><span class="pre">main</span></code>, or <code class="docutils literal notranslate"><span class="pre">0x08000000</span></code>)</p></li>
+<li><p><strong>Set temporary breakpoint</strong>: Set temporary breakpoint <code class="docutils literal notranslate"><span class="pre">tbreak</span></code> at a function name (e.g., <code class="docutils literal notranslate"><span class="pre">main</span></code>)</p></li>
+<li><p><strong>Output display format</strong>: Controls how GDB displays numeric values (addresses, register contents, etc.)</p></li>
+</ul>
+</li>
+<li><p><strong>Generated Commands Preview</strong>: Shows the actual GDB commands that will be executed</p></li>
+<li><p><strong>Additional Commands</strong>: Enter custom GDB commands to execute after the generated commands</p></li>
+</ul>
+</li>
+<li><p><strong>Pre-Run Commands</strong>: Commands executed after loading the program but before start of execution</p>
+<ul class="simple">
+<li><p><strong>Additional Commands</strong>: Enter the actual GDB commands to send</p></li>
+</ul>
+</li>
+<li><p><strong>Custom Reset Commands</strong>: Enter custom reset commands when standard reset is insufficient</p></li>
+</ol>
+<figure class="align-center" id="id9">
+<span id="fig-debug-target-initialization"></span><a class="reference internal image-reference" href="../_images/debug-target-initialization.png"><img alt="Debug Configuration Panel - Initialization Commands" src="../_images/debug-target-initialization.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">Debug Configuration Panel - Initialization Commands</span><a class="headerlink" href="#id9" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="gdb-settings-tab">
+<h4>GDB Settings Tab<a class="headerlink" href="#gdb-settings-tab" title="Link to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p><strong>Debugger Executable</strong>: Verify path to GDB executable</p>
+<ul class="simple">
+<li><p>Should point to your toolchain’s GDB (e.g., <code class="docutils literal notranslate"><span class="pre">arm-zephyr-eabi-gdb.exe</span></code>, <code class="docutils literal notranslate"><span class="pre">arm-none-eabi-gdb.exe</span></code>)</p></li>
+<li><p>Click <strong>Browse</strong> if you need to change it</p></li>
+</ul>
+</li>
+</ol>
+<figure class="align-center" id="id10">
+<span id="fig-debug-gdb-tab"></span><a class="reference internal image-reference" href="../_images/debug-gdb-tab.png"><img alt="Debug Configuration Panel - GDB Settings" src="../_images/debug-gdb-tab.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Debug Configuration Panel - GDB Settings</span><a class="headerlink" href="#id10" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="peripheral-tab">
+<h4>Peripheral Tab<a class="headerlink" href="#peripheral-tab" title="Link to this heading"></a></h4>
+<p>Configure SVD (System View Description) file for viewing and debugging microcontroller peripheral registers during debug sessions:</p>
+<ol class="arabic simple">
+<li><p><strong>SVD File Path</strong>: Browse and select the SVD file for your target device</p>
+<ul class="simple">
+<li><p>SVD files provide detailed register layouts and bit field descriptions</p></li>
+<li><p>Enables viewing and modifying peripheral registers in real-time during debugging</p></li>
+</ul>
+</li>
+</ol>
+<figure class="align-center" id="id11">
+<span id="fig-debug-peripheral-svd"></span><a class="reference internal image-reference" href="../_images/debug-peripheral-svd.png"><img alt="Debug Configuration Panel - Peripheral Inspector" src="../_images/debug-peripheral-svd.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 11 </span><span class="caption-text">Debug Configuration Panel - Peripheral Inspector</span><a class="headerlink" href="#id11" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="starting-the-debug-session">
+<h3>Starting the Debug Session<a class="headerlink" href="#starting-the-debug-session" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Program Path</strong>: The extension automatically resolves the active ELF file path. You can use the variable <code class="docutils literal notranslate"><span class="pre">${command:onsemi.getActiveElfPath}</span></code> or specify a workspace-relative path using <code class="docutils literal notranslate"><span class="pre">${workspaceFolder}</span></code>.</p></li>
+<li><p>Click <strong>“Start Debugging”</strong> to debug the program (with breakpoints)</p></li>
+<li><p>Click <strong>“Run Program”</strong> to flash the program without debugging</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Selecting Active ELF File</strong>: When multiple ELF files are present in your project, use the bottom status bar to select the active ELF file for debugging. If the Debug Configuration panel is already open when you change the active ELF in the status bar, you must save the Debug Configuration for the panel to display the updated ELF path.</p>
+</div>
+<figure class="align-center" id="id12">
+<span id="fig-start-debugging"></span><a class="reference internal image-reference" href="../_images/start-debugging.png"><img alt="Start debugging" src="../_images/start-debugging.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 12 </span><span class="caption-text">Start debugging</span><a class="headerlink" href="#id12" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="troubleshooting-debug-issues">
+<h3>Troubleshooting Debug Issues<a class="headerlink" href="#troubleshooting-debug-issues" title="Link to this heading"></a></h3>
+<p>If program fails to load:</p>
+<ol class="arabic simple">
+<li><p>Verify <strong>GDB Server Path</strong> points to correct <code class="docutils literal notranslate"><span class="pre">JLinkGDBServerCL.exe</span></code></p></li>
+<li><p>Check <strong>Debugger Executable</strong> in the GDB Settings Tab points to the correct GDB</p></li>
+<li><p>Ensure your J-Link debugger is connected and detected</p></li>
+<li><p>Try debugging again</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="onsemi Studio for Visual Studio Code" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../commands/index.html" class="btn btn-neutral float-right" title="Available Commands" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, onsemi.
+      <span class="lastupdated">Last updated on Feb 11, 2026.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
