@@ -306,10 +306,10 @@
 </div>
 <p>The import panel guides you through:</p>
 <ul class="simple">
-<li><p><strong>Select Workspace</strong>: Choose from configured repositories or browse for local folders/archives</p></li>
+<li><p><strong>Select SDK/Repository</strong>: Choose from configured repositories or browse for local folders/archives</p></li>
 <li><p><strong>Choose Toolchain</strong>: Select an existing toolchain or browse for toolchain installation path</p></li>
-<li><p><strong>Select Board</strong> (Zephyr only): Browse and select target board from available boards</p></li>
-<li><p><strong>Choose Sample</strong>: Browse available sample applications from the repository</p></li>
+<li><p><strong>Select Board Vendor and Target Board</strong> (Zephyr only): Choose the board vendor, then select the specific target board from the available options</p></li>
+<li><p><strong>Select Application</strong>: Select an application from the chosen sdk/repository</p></li>
 </ul>
 <p>After import, the project is added to your VS Code workspace with:</p>
 <ul class="simple">
@@ -340,17 +340,32 @@
 </div>
 <p>Create a new application from scratch:</p>
 <ul class="simple">
-<li><p><strong>Select Workspace</strong>: Choose the workspace/repository for the new application</p></li>
-<li><p><strong>Choose Toolchain</strong>: Select toolchain for building</p></li>
-<li><p><strong>Select Board</strong>: Choose target board</p></li>
-<li><p><strong>Application Name</strong>: Enter name for your new application</p></li>
-<li><p><strong>Configure Settings</strong>: Set up initial build configurations</p></li>
+<li><p><strong>Select SDK/Repository</strong>: Choose the sdk/repository for the new application</p></li>
+<li><p><strong>Choose Template</strong>: Select whether to create an empty application or start from an existing sample (the “From Sample” tab is active by default)</p></li>
 </ul>
 <figure class="align-center" id="id5">
-<span id="fig-create-new-application"></span><a class="reference internal image-reference" href="../_images/create-new-application.png"><img alt="Create New Application panel" src="../_images/create-new-application.png" style="width: 80%;" />
+<span id="fig-create-new-application"></span><a class="reference internal image-reference" href="../_images/create-new-application.png"><img alt="Create New Application panel showing template selection" src="../_images/create-new-application.png" style="width: 80%;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Create New Application panel</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Create New Application panel showing template selection</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p><strong>Configure Project</strong>: Enter the <strong>Application Name</strong> and <strong>Save Location</strong> for your new application</p></li>
+<li><p><strong>Environment Configuration</strong>:</p>
+<ul>
+<li><p><strong>Toolchain</strong>: Select the toolchain for building</p></li>
+<li><p><strong>Board Vendor</strong>: Choose the board vendor (Zephyr)</p></li>
+<li><p><strong>Target Board</strong>: Select the target board (Zephyr)</p></li>
+</ul>
+</li>
+<li><p>Click <strong>Create Application</strong> to create your new application</p></li>
+</ul>
+<figure class="align-center" id="id6">
+<span id="fig-create-new-application-config"></span><a class="reference internal image-reference" href="../_images/create-new-application-1.png"><img alt="Create New Application panel showing Configure Project and Environment Configuration" src="../_images/create-new-application-1.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Create New Application panel showing Configure Project and Environment Configuration</span><a class="headerlink" href="#id6" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="admonition note">
@@ -404,11 +419,11 @@
 <li><p><strong>Components</strong>: All source files compiled into the final output</p></li>
 <li><p><strong>Configuration</strong>: Kconfig and DeviceTree files (Zephyr Projects)</p></li>
 </ul>
-<figure class="align-center" id="id6">
+<figure class="align-center" id="id7">
 <span id="fig-application-view"></span><a class="reference internal image-reference" href="../_images/application-view.png"><img alt="Application view showing project structure and actions" src="../_images/application-view.png" style="width: 80%;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Application view showing project structure and actions</span><a class="headerlink" href="#id6" title="Link to this image"></a></p>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Application view showing project structure and actions</span><a class="headerlink" href="#id7" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
@@ -433,11 +448,11 @@
 <li><p>Under <strong>Configuration</strong>, click <strong>“Configure Settings”</strong></p></li>
 <li><p>The <strong>Configure Project Settings Panel</strong> opens</p></li>
 </ol>
-<figure class="align-center" id="id7">
+<figure class="align-center" id="id8">
 <span id="fig-configure-settings"></span><a class="reference internal image-reference" href="../_images/configure-settings.png"><img alt="Configure Project Settings panel" src="../_images/configure-settings.png" style="width: 80%;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Configure Project Settings panel</span><a class="headerlink" href="#id7" title="Link to this image"></a></p>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Configure Project Settings panel</span><a class="headerlink" href="#id8" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>The panel provides:</p>
@@ -508,11 +523,11 @@
 </ul>
 </li>
 </ol>
-<figure class="align-center" id="id8">
+<figure class="align-center" id="id9">
 <span id="fig-debug-target-tab"></span><a class="reference internal image-reference" href="../_images/debug-target-tab.png"><img alt="Debug Configuration Panel - Target Configuration" src="../_images/debug-target-tab.png" style="width: 80%;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Debug Configuration Panel - Target Configuration</span><a class="headerlink" href="#id8" title="Link to this image"></a></p>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">Debug Configuration Panel - Target Configuration</span><a class="headerlink" href="#id9" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
@@ -557,11 +572,11 @@
 </li>
 <li><p><strong>Custom Reset Commands</strong>: Enter custom reset commands when standard reset is insufficient</p></li>
 </ol>
-<figure class="align-center" id="id9">
+<figure class="align-center" id="id10">
 <span id="fig-debug-target-initialization"></span><a class="reference internal image-reference" href="../_images/debug-target-initialization.png"><img alt="Debug Configuration Panel - Initialization Commands" src="../_images/debug-target-initialization.png" style="width: 80%;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 9 </span><span class="caption-text">Debug Configuration Panel - Initialization Commands</span><a class="headerlink" href="#id9" title="Link to this image"></a></p>
+<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Debug Configuration Panel - Initialization Commands</span><a class="headerlink" href="#id10" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
@@ -575,11 +590,11 @@
 </ul>
 </li>
 </ol>
-<figure class="align-center" id="id10">
+<figure class="align-center" id="id11">
 <span id="fig-debug-gdb-tab"></span><a class="reference internal image-reference" href="../_images/debug-gdb-tab.png"><img alt="Debug Configuration Panel - GDB Settings" src="../_images/debug-gdb-tab.png" style="width: 80%;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Debug Configuration Panel - GDB Settings</span><a class="headerlink" href="#id10" title="Link to this image"></a></p>
+<p><span class="caption-number">Fig. 11 </span><span class="caption-text">Debug Configuration Panel - GDB Settings</span><a class="headerlink" href="#id11" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
@@ -594,11 +609,11 @@
 </ul>
 </li>
 </ol>
-<figure class="align-center" id="id11">
+<figure class="align-center" id="id12">
 <span id="fig-debug-peripheral-svd"></span><a class="reference internal image-reference" href="../_images/debug-peripheral-svd.png"><img alt="Debug Configuration Panel - Peripheral Inspector" src="../_images/debug-peripheral-svd.png" style="width: 80%;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 11 </span><span class="caption-text">Debug Configuration Panel - Peripheral Inspector</span><a class="headerlink" href="#id11" title="Link to this image"></a></p>
+<p><span class="caption-number">Fig. 12 </span><span class="caption-text">Debug Configuration Panel - Peripheral Inspector</span><a class="headerlink" href="#id12" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
@@ -614,11 +629,11 @@
 <p class="admonition-title">Note</p>
 <p><strong>Selecting Active ELF File</strong>: When multiple ELF files are present in your project, use the bottom status bar to select the active ELF file for debugging. If the Debug Configuration panel is already open when you change the active ELF in the status bar, you must save the Debug Configuration for the panel to display the updated ELF path.</p>
 </div>
-<figure class="align-center" id="id12">
+<figure class="align-center" id="id13">
 <span id="fig-start-debugging"></span><a class="reference internal image-reference" href="../_images/start-debugging.png"><img alt="Start debugging" src="../_images/start-debugging.png" style="width: 80%;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 12 </span><span class="caption-text">Start debugging</span><a class="headerlink" href="#id12" title="Link to this image"></a></p>
+<p><span class="caption-number">Fig. 13 </span><span class="caption-text">Start debugging</span><a class="headerlink" href="#id13" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
@@ -647,7 +662,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2026, onsemi.
-      <span class="lastupdated">Last updated on Feb 11, 2026.
+      <span class="lastupdated">Last updated on Feb 12, 2026.
       </span></p>
   </div>
 
