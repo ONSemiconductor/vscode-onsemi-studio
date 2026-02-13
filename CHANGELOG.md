@@ -1,6 +1,6 @@
 # onsemi Studio Change Log
 
-## [0.4.0] - 2026-02
+## [0.4] - 2026-02
 
 Initial public release of onsemi Studio for VS Code.
 
