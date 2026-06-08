@@ -14,8 +14,8 @@
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
       <link rel="stylesheet" type="text/css" href="../_static/css/light.css?v=ddb3986d" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/dark.css?v=963d01b0" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=ad55038f" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/dark.css?v=01a9747f" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=9e2e5c3d" />
 
   
     <link rel="shortcut icon" href="../_static/favicon.png"/>
@@ -103,14 +103,16 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../quick-start/index.html">Quick Start</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../quick-start/index.html#workspace-and-tools-setup-zephyr-projects-only">Workspace and Tools Setup (Zephyr Projects Only)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../quick-start/index.html#workspace-and-tools-setup">Workspace and Tools Setup</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../quick-start/index.html#express-mode-workflow-recommended">Express Mode Workflow (Recommended)</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../quick-start/index.html#import-application-zephyr-projects-only">Import Application (Zephyr Projects Only)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../quick-start/index.html#create-new-application-zephyr-projects-only">Create New Application (Zephyr Projects Only)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quick-start/index.html#import-application">Import Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quick-start/index.html#create-new-application">Create New Application</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../quick-start/index.html#working-with-projects">Working with Projects</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../quick-start/index.html#application-view">Application View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../quick-start/index.html#switching-the-active-configuration">Switching the Active Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../quick-start/index.html#pristine-build-mode-zephyr">Pristine Build Mode (Zephyr)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../quick-start/index.html#project-terminal">Project Terminal</a></li>
@@ -143,6 +145,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../configuration/index.html#onsemi-repositories">onsemi.repositories</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../configuration/index.html#onsemi-certificatepath">onsemi.certificatePath</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../configuration/index.html#onsemi-allowinsecuretls">onsemi.allowInsecureTls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration/index.html#onsemi-quickstart-enabled">onsemi.quickStart.enabled</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../configuration/index.html#project-specific-settings-folder-resource">Project-Specific Settings (Folder/Resource)</a><ul>
@@ -161,6 +164,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../configuration/index.html#complete-project-settings-example">Complete Project Settings Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration/index.html#sdk-manifest-sdk-json">SDK Manifest (<code class="docutils literal notranslate"><span class="pre">sdk.json</span></code>)</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../task-integration/index.html">Task Integration</a><ul>
@@ -171,6 +175,10 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">IntelliSense Configuration</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#switching-intellisense-provider">Switching IntelliSense Provider</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#refresh-configuration">Refresh Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#multi-folder-workspaces-active-folder">Multi-Folder Workspaces (Active Folder)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sub-project-switching-superbuild-multi-core">Sub-Project Switching (Superbuild / Multi-Core)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sidecar-configuration-files">Sidecar Configuration Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting-intellisense">Troubleshooting IntelliSense</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../output-files/index.html">Working with Output Files</a><ul>
@@ -200,7 +208,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../faq/index.html#cmake-specific">CMake-Specific</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../disclaimer/index.html">Disclaimer</a></li>
 </ul>
 
         </div>
@@ -244,6 +251,66 @@
 <p>Run: <code class="docutils literal notranslate"><span class="pre">onsemi:</span> <span class="pre">IntelliSense:</span> <span class="pre">Refresh</span> <span class="pre">configuration</span></code></p>
 <p>This updates IntelliSense based on the current active build configuration.</p>
 </section>
+<section id="multi-folder-workspaces-active-folder">
+<h2>Multi-Folder Workspaces (Active Folder)<a class="headerlink" href="#multi-folder-workspaces-active-folder" title="Link to this heading"></a></h2>
+<p>In a workspace with multiple project folders, clangd needs to know which folder’s compilation database to use. The extension provides an <strong>Active Folder</strong> indicator in the VS Code status bar (visible when clangd is the active provider).</p>
+<ul class="simple">
+<li><p>Click <strong>Active Folder</strong> in the status bar to pick which workspace folder clangd should index.</p></li>
+<li><p>You can also run the command <code class="docutils literal notranslate"><span class="pre">onsemi:</span> <span class="pre">IntelliSense:</span> <span class="pre">Select</span> <span class="pre">Active</span> <span class="pre">Folder</span></code> from the Command Palette.</p></li>
+</ul>
+<p>Switching the active folder reloads the clangd configuration (including any sub-project sidecars described below).</p>
+</section>
+<section id="sub-project-switching-superbuild-multi-core">
+<h2>Sub-Project Switching (Superbuild / Multi-Core)<a class="headerlink" href="#sub-project-switching-superbuild-multi-core" title="Link to this heading"></a></h2>
+<p>Some projects build more than one binary from the same source tree — for example, a superbuild that produces a primary-core binary and a co-processor binary (e.g. <code class="docutils literal notranslate"><span class="pre">cm33</span></code> and <code class="docutils literal notranslate"><span class="pre">lpdsp32</span></code>) each with its own compiler, include paths, and <code class="docutils literal notranslate"><span class="pre">compile_commands.json</span></code>.</p>
+<p>For these projects the extension shows an additional <strong>Active Sub-Project</strong> indicator in the status bar (visible when clangd is the active provider and the active folder contains at least one sub-project sidecar — see below).</p>
+<ol class="arabic simple">
+<li><p>Build all sub-projects at least once so each has a <code class="docutils literal notranslate"><span class="pre">compile_commands.json</span></code>.</p></li>
+<li><p>Click the <strong>Active Sub-Project</strong> status bar item.</p></li>
+<li><p>Pick the sub-project you want IntelliSense for (e.g. <code class="docutils literal notranslate"><span class="pre">cm33</span></code> or <code class="docutils literal notranslate"><span class="pre">lpdsp32</span></code>).</p></li>
+<li><p>clangd restarts automatically with that sub-project’s compiler path, arguments, and compilation database.</p></li>
+</ol>
+<p>You can also run the command <code class="docutils literal notranslate"><span class="pre">onsemi:</span> <span class="pre">IntelliSense:</span> <span class="pre">Select</span> <span class="pre">Active</span> <span class="pre">Sub-Project</span></code> from the Command Palette.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>After switching sub-projects, allow a few seconds for clangd to reindex the workspace before navigation, completion, and diagnostics fully reflect the new context.</p>
+</div>
+</section>
+<section id="sidecar-configuration-files">
+<h2>Sidecar Configuration Files<a class="headerlink" href="#sidecar-configuration-files" title="Link to this heading"></a></h2>
+<p>Sub-project switching is driven by <strong>sidecar configuration files</strong> stored under <code class="docutils literal notranslate"><span class="pre">.vscode/</span></code> in each workspace folder:</p>
+<p><code class="docutils literal notranslate"><span class="pre">.vscode/&lt;subproject&gt;_clangd.json</span></code></p>
+<p>The extension watches this pattern and exposes one entry per matching file in the <strong>Active Sub-Project</strong> picker. Each sidecar is a small JSON document with the same keys VS Code’s clangd extension expects:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;clangd.path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;C:/path/to/the/clangd-or-variant.exe&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;clangd.arguments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;--compile-commands-dir=C:/path/to/build/&lt;subproject&gt;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;--header-insertion=never&quot;</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>When you select a sub-project, the extension applies the sidecar’s <code class="docutils literal notranslate"><span class="pre">clangd.path</span></code> and <code class="docutils literal notranslate"><span class="pre">clangd.arguments</span></code> to the clangd extension and restarts the language server. This lets a single workspace use a different clangd binary (for example, a vendor-specific clangd variant for a DSP core) and a different <code class="docutils literal notranslate"><span class="pre">compile_commands.json</span></code> per sub-project.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Sidecar files are typically generated by the SDK’s CMake during configure. Re-run configure (<code class="docutils literal notranslate"><span class="pre">onsemi:</span> <span class="pre">Project:</span> <span class="pre">Configure</span></code>) if a sidecar is missing or out of date.</p>
+</div>
+</section>
+<section id="troubleshooting-intellisense">
+<h2>Troubleshooting IntelliSense<a class="headerlink" href="#troubleshooting-intellisense" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>Red squiggles on valid code after building</dt><dd><p>Run <code class="docutils literal notranslate"><span class="pre">onsemi:</span> <span class="pre">IntelliSense:</span> <span class="pre">Refresh</span> <span class="pre">configuration</span></code> from the Command Palette.</p>
+</dd>
+<dt>Wrong includes shown for a sub-project’s source files</dt><dd><p>Make sure <strong>Active Sub-Project</strong> in the status bar matches the sub-project you are editing.</p>
+</dd>
+<dt>clangd not found or not starting</dt><dd><p>The clangd VS Code extension prompts you to download clangd the first time it is needed — accept the prompt to install it.</p>
+</dd>
+<dt>IntelliSense stale after changing presets or build configurations</dt><dd><p>Re-run configure (<code class="docutils literal notranslate"><span class="pre">onsemi:</span> <span class="pre">Project:</span> <span class="pre">Configure</span></code>, or build the project) to regenerate <code class="docutils literal notranslate"><span class="pre">compile_commands.json</span></code>, then run <code class="docutils literal notranslate"><span class="pre">onsemi:</span> <span class="pre">IntelliSense:</span> <span class="pre">Refresh</span> <span class="pre">configuration</span></code>.</p>
+</dd>
+<dt>Microsoft C/C++ extension conflicts with clangd</dt><dd><p>Use <code class="docutils literal notranslate"><span class="pre">onsemi:</span> <span class="pre">IntelliSense:</span> <span class="pre">Switch</span> <span class="pre">Provider</span></code> to select exactly one provider.</p>
+</dd>
+</dl>
+</section>
 </section>
 
 
@@ -257,9 +324,13 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2026, onsemi.
-      <span class="lastupdated">Last updated on Feb 12, 2026.
-      </span></p>
+<div class="onsemi-legal-footer">
+        <a href="https://www.onsemi.com/privacy" target="_blank" rel="noopener">Privacy Policy</a><span class="onsemi-legal-sep">|</span>
+        <a href="https://www.onsemi.com/terms-of-use" target="_blank" rel="noopener">Terms of Use</a></div>
+<p>
+    &#169; Copyright 2026, Semiconductor Components Industries, LLC.
+    <span class="lastupdated">Last updated on Jun 08, 2026.</span></p>
+
   </div>
 
    

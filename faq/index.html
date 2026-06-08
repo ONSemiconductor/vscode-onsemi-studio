@@ -14,8 +14,8 @@
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
       <link rel="stylesheet" type="text/css" href="../_static/css/light.css?v=ddb3986d" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/dark.css?v=963d01b0" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=ad55038f" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/dark.css?v=01a9747f" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=9e2e5c3d" />
 
   
     <link rel="shortcut icon" href="../_static/favicon.png"/>
@@ -35,7 +35,6 @@
       <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/js/theme.js"></script>
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Disclaimer" href="../disclaimer/index.html" />
     <link rel="prev" title="Troubleshooting" href="../troubleshooting/index.html" /> 
 </head>
 
@@ -103,14 +102,16 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../quick-start/index.html">Quick Start</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../quick-start/index.html#workspace-and-tools-setup-zephyr-projects-only">Workspace and Tools Setup (Zephyr Projects Only)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../quick-start/index.html#workspace-and-tools-setup">Workspace and Tools Setup</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../quick-start/index.html#express-mode-workflow-recommended">Express Mode Workflow (Recommended)</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../quick-start/index.html#import-application-zephyr-projects-only">Import Application (Zephyr Projects Only)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../quick-start/index.html#create-new-application-zephyr-projects-only">Create New Application (Zephyr Projects Only)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quick-start/index.html#import-application">Import Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quick-start/index.html#create-new-application">Create New Application</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../quick-start/index.html#working-with-projects">Working with Projects</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../quick-start/index.html#application-view">Application View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../quick-start/index.html#switching-the-active-configuration">Switching the Active Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../quick-start/index.html#pristine-build-mode-zephyr">Pristine Build Mode (Zephyr)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../quick-start/index.html#project-terminal">Project Terminal</a></li>
@@ -143,6 +144,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../configuration/index.html#onsemi-repositories">onsemi.repositories</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../configuration/index.html#onsemi-certificatepath">onsemi.certificatePath</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../configuration/index.html#onsemi-allowinsecuretls">onsemi.allowInsecureTls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration/index.html#onsemi-quickstart-enabled">onsemi.quickStart.enabled</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../configuration/index.html#project-specific-settings-folder-resource">Project-Specific Settings (Folder/Resource)</a><ul>
@@ -161,6 +163,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../configuration/index.html#complete-project-settings-example">Complete Project Settings Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration/index.html#sdk-manifest-sdk-json">SDK Manifest (<code class="docutils literal notranslate"><span class="pre">sdk.json</span></code>)</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../task-integration/index.html">Task Integration</a><ul>
@@ -171,6 +174,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../intellisense/index.html">IntelliSense Configuration</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../intellisense/index.html#switching-intellisense-provider">Switching IntelliSense Provider</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intellisense/index.html#refresh-configuration">Refresh Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intellisense/index.html#multi-folder-workspaces-active-folder">Multi-Folder Workspaces (Active Folder)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intellisense/index.html#sub-project-switching-superbuild-multi-core">Sub-Project Switching (Superbuild / Multi-Core)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intellisense/index.html#sidecar-configuration-files">Sidecar Configuration Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intellisense/index.html#troubleshooting-intellisense">Troubleshooting IntelliSense</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../output-files/index.html">Working with Output Files</a><ul>
@@ -200,7 +207,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#cmake-specific">CMake-Specific</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../disclaimer/index.html">Disclaimer</a></li>
 </ul>
 
         </div>
@@ -230,8 +236,14 @@
 <h1>Frequently Asked Questions (FAQ)<a class="headerlink" href="#frequently-asked-questions-faq" title="Link to this heading"></a></h1>
 <section id="general-questions">
 <h2>General Questions<a class="headerlink" href="#general-questions" title="Link to this heading"></a></h2>
+<p><strong>Q: Do the Workspace and Tools Setup, Import Application, and Create New Application wizards work for bare-metal CMake / SDK projects?</strong></p>
+<p>A: Yes. In 0.5 all three wizards support both <strong>Zephyr</strong> and <strong>bare-metal CMake / SDK</strong> projects. The Workspace and Tools Setup wizard detects the project type from the selected source and adapts its steps. Import Application supports multi-sample selection for both CMake / SDK and Zephyr sources; for Zephyr, each selected sample is paired with the board chosen in the wizard. Create New Application generates either an empty project or a copy of a sample template, with a <code class="docutils literal notranslate"><span class="pre">.vscode/settings.json</span></code> populated with toolchain, environment variables, and an initial build configuration.</p>
+<p><strong>Q: How do I remove a configured SDK or Repository?</strong></p>
+<p>A: In the Application view, hover the SDK or Repository node and click the inline trash icon. The extension prompts for confirmation, then removes the entry from <code class="docutils literal notranslate"><span class="pre">onsemi.repositories</span></code>. Files on disk are not deleted.</p>
+<p><strong>Q: How do I cancel a long-running build / configure / clean / flash?</strong></p>
+<p>A: Click the inline stop icon on the project node while a task is running, run <code class="docutils literal notranslate"><span class="pre">onsemi:</span> <span class="pre">Project:</span> <span class="pre">Stop</span> <span class="pre">Task</span></code> from the Command Palette, or right-click the project node and choose <strong>Stop Task</strong>.</p>
 <p><strong>Q: Do I need to install tools manually?</strong></p>
-<p>A: No. The Workspace and Tools Setup panel can download and install all required tools automatically. The extension has a default set of tools it installs based on the project type (Zephyr or CMake). If your repository/SDK contains a <code class="docutils literal notranslate"><span class="pre">tools.json</span></code> file, the extension will install the tools specified in that file instead.</p>
+<p>A: No. The Workspace and Tools Setup panel can download and install all required tools automatically. The extension has a default set of tools it installs based on the project type (Zephyr or CMake/SDK). If your repository/SDK contains a <code class="docutils literal notranslate"><span class="pre">tools.json</span></code> file, the extension will install the tools specified in that file instead.</p>
 <p><strong>Q: Can I work with multiple projects simultaneously?</strong></p>
 <p>A: Yes. Use VS Code’s multi-root workspace feature. Each project maintains independent settings in its <code class="docutils literal notranslate"><span class="pre">.vscode/settings.json</span></code>.</p>
 <p><strong>Q: How do I switch between debug and release builds?</strong></p>
@@ -321,6 +333,20 @@
 <span class="p">}</span>
 </pre></div>
 </div>
+<p><strong>Q: How do I use ``menuconfig`` / ``guiconfig`` for CMake projects?</strong></p>
+<p>A: When a CMake project exposes <code class="docutils literal notranslate"><span class="pre">menuconfig</span></code> or <code class="docutils literal notranslate"><span class="pre">guiconfig</span></code> targets, the extension auto-detects them and enables the corresponding <strong>KConfig Config</strong> action on the project node along with the <code class="docutils literal notranslate"><span class="pre">onsemi:</span> <span class="pre">Project:</span> <span class="pre">Menuconfig</span></code> / <code class="docutils literal notranslate"><span class="pre">onsemi:</span> <span class="pre">Project:</span> <span class="pre">Guiconfig</span></code> commands. No additional setting is required.</p>
+<p><strong>Q: My CMake superbuild has different source directories per build configuration. How do I express that?</strong></p>
+<p>A: Set <code class="docutils literal notranslate"><span class="pre">sourceDir</span></code> per entry in <code class="docutils literal notranslate"><span class="pre">onsemi.build.configurations</span></code>. Each value is the source directory for that configuration, relative to the project root. When omitted, the project’s default source directory is used.</p>
+<p><strong>Q: How do I declare that my project depends on a specific SDK and version?</strong></p>
+<p>A: Add an <code class="docutils literal notranslate"><span class="pre">sdkDependencies</span></code> map to the project’s <code class="docutils literal notranslate"><span class="pre">sdk.json</span></code> (next to <code class="docutils literal notranslate"><span class="pre">CMakePresets.json</span></code>). Each key is an installed SDK’s <code class="docutils literal notranslate"><span class="pre">name</span></code>; each value is a semver range. Example:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;sdkDependencies&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;onsemi-bm-sdk&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^1.4.0&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>At configure time the extension resolves each dependency against the SDKs registered under <code class="docutils literal notranslate"><span class="pre">onsemi.repositories</span></code> and exports each matched SDK’s <code class="docutils literal notranslate"><span class="pre">envVarName</span></code> so <code class="docutils literal notranslate"><span class="pre">$env{...}</span></code> substitutions in <code class="docutils literal notranslate"><span class="pre">CMakePresets.json</span></code> resolve to the correct install path. If a dependency cannot be satisfied the extension reports the required range and the installed versions, and configuration is aborted.</p>
 <hr class="docutils" />
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -334,15 +360,18 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../troubleshooting/index.html" class="btn btn-neutral float-left" title="Troubleshooting" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../disclaimer/index.html" class="btn btn-neutral float-right" title="Disclaimer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2026, onsemi.
-      <span class="lastupdated">Last updated on Feb 12, 2026.
-      </span></p>
+<div class="onsemi-legal-footer">
+        <a href="https://www.onsemi.com/privacy" target="_blank" rel="noopener">Privacy Policy</a><span class="onsemi-legal-sep">|</span>
+        <a href="https://www.onsemi.com/terms-of-use" target="_blank" rel="noopener">Terms of Use</a></div>
+<p>
+    &#169; Copyright 2026, Semiconductor Components Industries, LLC.
+    <span class="lastupdated">Last updated on Jun 08, 2026.</span></p>
+
   </div>
 
    

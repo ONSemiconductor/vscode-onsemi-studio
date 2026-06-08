@@ -13,8 +13,8 @@
       <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
       <link rel="stylesheet" type="text/css" href="_static/css/light.css?v=ddb3986d" />
-      <link rel="stylesheet" type="text/css" href="_static/css/dark.css?v=963d01b0" />
-      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=ad55038f" />
+      <link rel="stylesheet" type="text/css" href="_static/css/dark.css?v=01a9747f" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=9e2e5c3d" />
 
   
     <link rel="shortcut icon" href="_static/favicon.png"/>
@@ -148,14 +148,16 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="quick-start/index.html">Quick Start</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="quick-start/index.html#workspace-and-tools-setup-zephyr-projects-only">Workspace and Tools Setup (Zephyr Projects Only)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quick-start/index.html#workspace-and-tools-setup">Workspace and Tools Setup</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="quick-start/index.html#express-mode-workflow-recommended">Express Mode Workflow (Recommended)</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="quick-start/index.html#import-application-zephyr-projects-only">Import Application (Zephyr Projects Only)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quick-start/index.html#create-new-application-zephyr-projects-only">Create New Application (Zephyr Projects Only)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick-start/index.html#import-application">Import Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quick-start/index.html#create-new-application">Create New Application</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quick-start/index.html#working-with-projects">Working with Projects</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="quick-start/index.html#application-view">Application View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quick-start/index.html#switching-the-active-configuration">Switching the Active Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quick-start/index.html#pristine-build-mode-zephyr">Pristine Build Mode (Zephyr)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="quick-start/index.html#project-terminal">Project Terminal</a></li>
@@ -188,6 +190,7 @@
 <li class="toctree-l3"><a class="reference internal" href="configuration/index.html#onsemi-repositories">onsemi.repositories</a></li>
 <li class="toctree-l3"><a class="reference internal" href="configuration/index.html#onsemi-certificatepath">onsemi.certificatePath</a></li>
 <li class="toctree-l3"><a class="reference internal" href="configuration/index.html#onsemi-allowinsecuretls">onsemi.allowInsecureTls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration/index.html#onsemi-quickstart-enabled">onsemi.quickStart.enabled</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="configuration/index.html#project-specific-settings-folder-resource">Project-Specific Settings (Folder/Resource)</a><ul>
@@ -206,6 +209,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="configuration/index.html#complete-project-settings-example">Complete Project Settings Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration/index.html#sdk-manifest-sdk-json">SDK Manifest (<code class="docutils literal notranslate"><span class="pre">sdk.json</span></code>)</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="task-integration/index.html">Task Integration</a><ul>
@@ -216,6 +220,10 @@
 <li class="toctree-l1"><a class="reference internal" href="intellisense/index.html">IntelliSense Configuration</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="intellisense/index.html#switching-intellisense-provider">Switching IntelliSense Provider</a></li>
 <li class="toctree-l2"><a class="reference internal" href="intellisense/index.html#refresh-configuration">Refresh Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intellisense/index.html#multi-folder-workspaces-active-folder">Multi-Folder Workspaces (Active Folder)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intellisense/index.html#sub-project-switching-superbuild-multi-core">Sub-Project Switching (Superbuild / Multi-Core)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intellisense/index.html#sidecar-configuration-files">Sidecar Configuration Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intellisense/index.html#troubleshooting-intellisense">Troubleshooting IntelliSense</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="output-files/index.html">Working with Output Files</a><ul>
@@ -245,7 +253,6 @@
 <li class="toctree-l2"><a class="reference internal" href="faq/index.html#cmake-specific">CMake-Specific</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="disclaimer/index.html">Disclaimer</a></li>
 </ul>
 
         </div>
@@ -396,9 +403,13 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2026, onsemi.
-      <span class="lastupdated">Last updated on Feb 12, 2026.
-      </span></p>
+<div class="onsemi-legal-footer">
+        <a href="https://www.onsemi.com/privacy" target="_blank" rel="noopener">Privacy Policy</a><span class="onsemi-legal-sep">|</span>
+        <a href="https://www.onsemi.com/terms-of-use" target="_blank" rel="noopener">Terms of Use</a></div>
+<p>
+    &#169; Copyright 2026, Semiconductor Components Industries, LLC.
+    <span class="lastupdated">Last updated on Jun 08, 2026.</span></p>
+
   </div>
 
    

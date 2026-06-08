@@ -93,7 +93,26 @@ html[data-theme="dark"] .wy-menu-vertical a {
 
 html[data-theme="dark"] .wy-menu-vertical a:hover {
     background-color: var(--navbar-background-color-hover) !important;
+    color: var(--navbar-hover-color) !important;
+    border-left-color: var(--navbar-hover-color) !important;
     transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease !important;
+}
+
+/* Match light-mode behavior on nested levels and the expand chevron */
+html[data-theme="dark"] .wy-menu-vertical li.toctree-l2 > a:hover,
+html[data-theme="dark"] .wy-menu-vertical li.toctree-l2 > a:focus,
+html[data-theme="dark"] .wy-menu-vertical li.toctree-l3 > a:hover,
+html[data-theme="dark"] .wy-menu-vertical li.toctree-l3 > a:focus,
+html[data-theme="dark"] .wy-menu-vertical li.toctree-l4 > a:hover,
+html[data-theme="dark"] .wy-menu-vertical li.toctree-l4 > a:focus {
+    color: var(--navbar-hover-color) !important;
+}
+
+html[data-theme="dark"] .wy-menu-vertical a:hover button.toctree-expand,
+html[data-theme="dark"] .wy-menu-vertical a:focus button.toctree-expand,
+html[data-theme="dark"] .wy-menu-vertical li.toctree-l2 a:hover button.toctree-expand,
+html[data-theme="dark"] .wy-menu-vertical li.toctree-l2 a:focus button.toctree-expand {
+    color: var(--navbar-hover-color) !important;
 }
 
 html[data-theme="dark"] .wy-nav-content-wrap {
@@ -230,6 +249,24 @@ html[data-theme="dark"] #file-filter-select {
 
 html[data-theme="dark"] #filter-stats {
     color: #9aa3ad !important;
+}
+
+/* Dark mode guilabel, menuselection, and kbd overrides */
+html[data-theme="dark"] .rst-content .guilabel,
+html[data-theme="dark"] .rst-content .menuselection {
+    background: #1a2832 !important;
+    border: 1px solid #3d6178 !important;
+    color: #e8e9ea !important;
+}
+
+html[data-theme="dark"] .rst-content :not(dl.option-list) > :not(dt):not(kbd):not(.kbd) > .kbd,
+html[data-theme="dark"] .rst-content :not(dl.option-list) > :not(dt):not(kbd):not(.kbd) > kbd,
+html[data-theme="dark"] .rst-content kbd,
+html[data-theme="dark"] .rst-content .kbd {
+    background-color: #2d3139 !important;
+    border: 1px solid #3d4149 !important;
+    box-shadow: 0 2px #1a1d23 !important;
+    color: #e8e9ea !important;
 }
 
 /* Dark mode logo switcher */

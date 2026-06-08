@@ -517,9 +517,9 @@ a.icon-home:hover {
 
 .wy-menu-vertical a:hover,
 .wy-menu-vertical a:focus {
-    background-color: var(--navbar-background-color-hover);
-    color: var(--navbar-hover-color);
-    border-left-color: var(--navbar-hover-color);
+    background-color: var(--navbar-background-color-hover) !important;
+    color: var(--navbar-hover-color) !important;
+    border-left-color: var(--navbar-hover-color) !important;
     text-decoration: none;
 }
 
@@ -569,7 +569,7 @@ a.icon-home:hover {
 
 .wy-menu-vertical li.toctree-l2 > a:hover,
 .wy-menu-vertical li.toctree-l2 > a:focus {
-    color: var(--navbar-hover-color);
+    color: var(--navbar-hover-color) !important;
 }
 
 .wy-menu-vertical li.toctree-l3 > a {
@@ -581,7 +581,7 @@ a.icon-home:hover {
 
 .wy-menu-vertical li.toctree-l3 > a:hover,
 .wy-menu-vertical li.toctree-l3 > a:focus {
-    color: var(--navbar-hover-color);
+    color: var(--navbar-hover-color) !important;
 }
 
 .wy-menu-vertical li.toctree-l4 > a {
@@ -593,7 +593,7 @@ a.icon-home:hover {
 
 .wy-menu-vertical li.toctree-l4 > a:hover,
 .wy-menu-vertical li.toctree-l4 > a:focus {
-    color: var(--navbar-hover-color);
+    color: var(--navbar-hover-color) !important;
 }
 
 /* Current item display - handle long words */
@@ -664,7 +664,7 @@ a.icon-home:hover {
 .wy-menu-vertical a:focus button.toctree-expand,
 .wy-menu-vertical li.toctree-l2 a:hover button.toctree-expand,
 .wy-menu-vertical li.toctree-l2 a:focus button.toctree-expand {
-    color: var(--navbar-hover-color);
+    color: var(--navbar-hover-color) !important;
 }
 
 .wy-menu-vertical a:active button.toctree-expand,
@@ -1008,6 +1008,10 @@ table.docutils tbody tr:last-child td {
     box-shadow: 0 2px 8px var(--onsemi-shadow);
 }
 
+footer > hr {
+    display: none;
+}
+
 footer {
     color: var(--onsemi-text-light);
     font-size: 0.9rem;
@@ -1015,6 +1019,27 @@ footer {
 
 footer a {
     color: var(--onsemi-secondary);
+}
+
+.onsemi-legal-footer {
+    text-align: center;
+    padding: 8px 0;
+    font-size: 0.85rem;
+    color: var(--onsemi-text-light);
+}
+
+.onsemi-legal-footer a {
+    color: var(--onsemi-secondary);
+    text-decoration: none;
+}
+
+.onsemi-legal-footer a:hover {
+    text-decoration: underline;
+}
+
+.onsemi-legal-sep {
+    margin: 0 8px;
+    color: var(--onsemi-text-light);
 }
 
 /* ========================================================================
