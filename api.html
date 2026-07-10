@@ -4,9 +4,10 @@
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><script>(function(){try{var stored=null;try{stored=localStorage.getItem('theme')}catch(e){stored=null}var prefersDark=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;var theme=stored?stored:(prefersDark?'dark':'light');document.documentElement.setAttribute('data-theme',theme);}catch(err){} })();</script>
-<style id="initial-theme-vars">html[data-theme="dark"]{--navbar-background-color:#1a1d23;--navbar-background-color-hover:#2d3139;--navbar-current-background-color:#2d3139;--navbar-current-background-color-hover:#3d4149;--navbar-level-1-color:#c9d1d9;--navbar-heading-color:#c9d1d9;--onsemi-light:#0d1117;--onsemi-text:#e8e9ea}html[data-theme="light"]{--navbar-background-color:#fcfcfd;--navbar-background-color-hover:#f8f9fa;--navbar-current-background-color:#f8f9fa;--navbar-current-background-color-hover:#f1f3f5;--navbar-level-1-color:#212529;--navbar-heading-color:#1d3546;--onsemi-light:#fcfcfd;--onsemi-text:#212529}</style>
+<style id="initial-theme-vars">html[data-theme="dark"]{--navbar-background-color:#1a1d23;--navbar-background-color-hover:#2d3139;--navbar-current-background-color:#2d3139;--navbar-current-background-color-hover:#3d4149;--navbar-level-1-color:#c9d1d9;--navbar-heading-color:#c9d1d9;--onsemi-light:#0d1117;--onsemi-text:#e8e9ea}html[data-theme="light"]{--navbar-background-color:#fcfcfd;--navbar-background-color-hover:#f8f9fa;--navbar-current-background-color:#f8f9fa;--navbar-current-background-color-hover:#f1f3f5;--navbar-level-1-color:#212529;--navbar-heading-color:#1d3546;--onsemi-light:#fcfcfd;--onsemi-text:#212529}</style><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Search &mdash; onsemi Studio for Visual Studio Code</title>
+  <title>API Overview &mdash; onsemi Studio for Visual Studio Code</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
@@ -18,8 +19,7 @@
 
   
     <link rel="shortcut icon" href="_static/favicon.png"/>
-    <link rel="canonical" href="https://onsemiconductor.github.io/vscode-onsemi-studio/gsearch.html" />
-  
+    <link rel="canonical" href="https://onsemiconductor.github.io/vscode-onsemi-studio/api.html" />
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="_static/documentation_options.js?v=6593fba4"></script>
@@ -34,7 +34,6 @@
       <script src="_static/togglebutton.js?v=1ae7504c"></script>
       <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/js/theme.js"></script>
-  <link rel="stylesheet" href="_static/css/gcs.css" type="text/css" />
     <link rel="search" title="Search" href="search.html" /> 
 </head>
 
@@ -79,7 +78,7 @@
   // Set initial form action and ensure proper navigation
   var form = document.getElementById('rtd-search-form-sidebar');
   if (form) {
-    var gsearchPath = '#';
+    var gsearchPath = 'gsearch.html';
     var searchPath = 'search.html';
     
     // If we're on gsearch.html, use gsearch.html instead of relative path
@@ -158,7 +157,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Search</li>
+      <li class="breadcrumb-item active">API Overview</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -167,21 +166,51 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h2>Search Results</h2>
-  <script async src="https://cse.google.com/cse.js?cx=">
-  </script>
-  <div class="gcse-searchresults-only"></div>
-  
-  <script>
-  // Get search query from URL and trigger Google CSE search
-  (function() {
-    var params = new URLSearchParams(window.location.search);
-    var query = params.get('q');
-    if (query && window.google && window.google.search) {
-      // Google CSE will automatically pick up the query parameter
-    }
-  })();
-  </script>
+  <section id="api-overview">
+<span id="api"></span><h1>API Overview<a class="headerlink" href="#api-overview" title="Link to this heading"></a></h1>
+<p>For the complete API reference, see the <a class="reference external" href="doxygen/html/index.html">Doxygen Main Page</a>.</p>
+<p>The table below lists the SDK’s APIs with their current version and the release
+they were introduced in. Version and since information is extracted from
+<code class="docutils literal notranslate"><span class="pre">&#64;version</span></code> and <code class="docutils literal notranslate"><span class="pre">&#64;since</span></code> Doxygen annotations in each API’s <code class="docutils literal notranslate"><span class="pre">&#64;defgroup</span></code>.</p>
+<table class="api-overview docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>API</p></th>
+<th class="head"><p>Version</p></th>
+<th class="head"><p>Since</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="doxygen/html/group___h_w.html">Hardware Abstraction Layer</a></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="doxygen/html/group___d_r_i_v_e_r_s.html">Peripheral Drivers</a></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="doxygen/html/group___s_e_r_v_i_c_e_s.html">Application Services</a></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="doxygen/html/group___b_o_a_r_d___s_u_p_p_o_r_t.html">Board Support</a></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="doxygen/html/group___c_o_m_m_o_n.html">Common Type Definitions and Constants</a></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Browse the full Doxygen reference by category:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="doxygen/html/index.html">Main Page</a></p></li>
+</ul>
+</div>
+</section>
+
 
            </div>
           </div>
@@ -207,9 +236,7 @@
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
-
+  </script> 
 
 </body>
 </html>
