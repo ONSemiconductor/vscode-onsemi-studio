@@ -1,6 +1,12 @@
 # onsemi Studio Change Log
 
-## [0.5] - 2026-06
+## [0.5.17] - 2026-07
+
+### Fixed
+
+- Fixed ZIP extraction hanging indefinitely on recent VS Code versions by upgrading `yauzl` (3.3.0 → 3.4.0) — caused by a Node.js stream compatibility bug in the third-party library ([yauzl#176](https://github.com/thejoshwolfe/yauzl/issues/176))
+
+## [0.5.15] - 2026-06
 
 ### Security
 
@@ -34,7 +40,7 @@
 - ELF files from sample builds correctly attributed to the sample's workspace folder
 - Auto-clean stale `CMakeCache.txt` when `CMAKE_HOME_DIRECTORY` does not match current source directory (project moved/renamed)
 
-## [0.4] - 2026-02
+## [0.4.6] - 2026-02
 
 Initial public release of onsemi Studio for VS Code.
 
