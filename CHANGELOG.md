@@ -1,5 +1,34 @@
 # onsemi Studio Change Log
 
+## [0.6.19] - 2026-09
+
+### Fixed
+
+- **Toolchain install failures on Windows** — Installing an SDK toolchain (e.g. the Zephyr SDK) no longer fails intermittently when antivirus or another process briefly locks files during extraction, or when a previous partial install is left behind.
+- **Extension activation failure** — Fixed an issue that prevented the extension from activating on some systems.
+- **Duplicate repository entries from drive-letter casing** — Adding the same folder with different drive-letter casing (`c:\` vs `C:\`) no longer creates two entries; existing duplicates are merged automatically.
+- **Setup no longer aborts on inaccessible toolchains** — When an access-restricted toolchain can't be downloaded, it is skipped and the remaining tools still install. The Finish step lists what was skipped so it can be installed later.
+- **Duplicate tool entries** — A tool whose version changed is no longer listed twice; each tool keeps a single entry.
+- **Invalid certificate path aborting West install** — A misconfigured `onsemi.certificatePath` (a folder or missing file) is now skipped with a log message instead of failing workspace setup.
+- **Package installs under uv** — West/requirements installs no longer fail in uv-managed environments; the custom CA is applied correctly and `onsemi.allowInsecureTls` is honored.
+- **Stale CMake cache on configuration switch** — Switching build configurations that share a build directory no longer reuses the previous configuration's cache, so a manual clean build is no longer required.
+
+### Added
+
+- **J-Link minimum-version check** — onsemi Studio now warns (non-blocking) when the installed SEGGER J-Link is missing or older than the version your SDK recommends, with a shortcut to the download page. Debugging and flashing are never blocked.
+- **Repository Tools panel** — A new panel lists each registered repository and its configured tools (version, source, and whether the install path exists on disk), with inline editing, adding, and removing of tool paths.
+- **Windows certificate-store support for Git/West** — New `onsemi.git.useWindowsSchannel` setting (on by default, Windows-only) allows Git and West to validate server certificates against the Windows certificate store for improved compatibility in enterprise environments.
+- **Board-aware sample filtering (Zephyr)** — The Import/Create Application sample picker can filter samples to those compatible with the selected board, with a **Compatible / All** toggle, a green **Recommended** badge, and an amber **Toolchain incompatible** warning.
+- **Zephyr snippets** — Build configurations can now select Zephyr snippets (passed to `west build` as `-S`), with a **Snippets** multi-select in Configure Settings and a `West: List Snippets` command.
+- **NVM Image Tool panel** — A new panel configures and launches the NVM image tool (`nvmi`). It is shown only for SDKs that declare NVM support.
+- **Remove Folder from Workspace** — A new project context-menu action removes a project folder from the current VS Code workspace.
+- **Cancel Repository Setup** — You can now cancel an in-progress clone/download/extract during workspace setup and return cleanly to the form.
+- **Automatic CMakePresets.json sync** — Build configurations update automatically when `CMakePresets.json` changes, including support for `include` directives and `$penv{}` macros.
+
+### Changed
+
+- **ASIP (lpdsp32) debug configuration** — The ASIP debug configuration fields now match the current SDK (`gdbforasipArgs` and a structured `debug_client_options` with host/port/core). Re-save existing ASIP configurations from the Debug Configuration panel to update them.
+
 ## [0.5.17] - 2026-07
 
 ### Fixed
