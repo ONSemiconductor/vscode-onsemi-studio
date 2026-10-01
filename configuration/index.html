@@ -14,15 +14,15 @@
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
       <link rel="stylesheet" type="text/css" href="../_static/css/light.css?v=ddb3986d" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/dark.css?v=8c94e3e7" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=ed08fe59" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/dark.css?v=b5a3722b" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=a56eb22f" />
 
   
     <link rel="shortcut icon" href="../_static/favicon.png"/>
     <link rel="canonical" href="https://onsemiconductor.github.io/vscode-onsemi-studio/configuration/index.html" />
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=6593fba4"></script>
+      <script src="../_static/documentation_options.js?v=526b71ce"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -105,7 +105,7 @@
 <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     <span class="fa fa-book"> onsemi Studio</span>
-    v: 0.5.17
+    v: 0.6.19
     <span class="fa fa-caret-down"></span>
   </span>
   <div class="rst-other-versions">
@@ -139,6 +139,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#onsemi-repositories">onsemi.repositories</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#onsemi-certificatepath">onsemi.certificatePath</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#onsemi-allowinsecuretls">onsemi.allowInsecureTls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#onsemi-git-usewindowsschannel">onsemi.git.useWindowsSchannel</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#onsemi-quickstart-enabled">onsemi.quickStart.enabled</a></li>
 </ul>
 </li>
@@ -159,6 +160,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#complete-project-settings-example">Complete Project Settings Example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sdk-manifest-sdk-json">SDK Manifest (<code class="docutils literal notranslate"><span class="pre">sdk.json</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#auth-gated-toolchains-tools-json">Auth-Gated Toolchains (<code class="docutils literal notranslate"><span class="pre">tools.json</span></code>)</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../task-integration/index.html">Task Integration</a></li>
@@ -263,6 +265,15 @@
 <p><strong>Type</strong>: <code class="docutils literal notranslate"><span class="pre">string</span></code></p>
 <p><strong>Default</strong>: <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code></p>
 <p><strong>Description</strong>: Path to a custom CA certificate file to trust for HTTPS requests, Git SSL verification (<code class="docutils literal notranslate"><span class="pre">GIT_SSL_CAINFO</span></code>), and pip installs (<code class="docutils literal notranslate"><span class="pre">--cert</span></code>). Useful for corporate proxies that use self-signed or internal CA certificates.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The path is validated before use; if it points to a directory or a missing
+file it is logged and skipped instead of aborting the install. In
+<strong>uv-managed</strong> Python environments the custom CA is passed to uv via the
+<code class="docutils literal notranslate"><span class="pre">SSL_CERT_FILE</span></code> environment variable (uv does not accept pip’s <code class="docutils literal notranslate"><span class="pre">--cert</span></code>
+flag), and <code class="docutils literal notranslate"><span class="pre">--allow-insecure-host</span></code> is used when <code class="docutils literal notranslate"><span class="pre">onsemi.allowInsecureTls</span></code>
+is set.</p>
+</div>
 <p><strong>Example</strong>:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;onsemi.certificatePath&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;C:/certs/corporate-ca.crt&quot;</span>
@@ -275,6 +286,24 @@
 <p><strong>Type</strong>: <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p>
 <p><strong>Default</strong>: <code class="docutils literal notranslate"><span class="pre">false</span></code></p>
 <p><strong>Description</strong>: Disables TLS certificate verification for onsemi Studio HTTP requests, Git SSL verification, and pip trusted-host checks (not recommended for production).</p>
+</section>
+<section id="onsemi-git-usewindowsschannel">
+<h3>onsemi.git.useWindowsSchannel<a class="headerlink" href="#onsemi-git-usewindowsschannel" title="Link to this heading"></a></h3>
+<p><strong>Type</strong>: <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p>
+<p><strong>Default</strong>: <code class="docutils literal notranslate"><span class="pre">true</span></code> (Windows only)</p>
+<p><strong>Description</strong>: On Windows, routes Git and West operations through Git’s native
+Secure Channel (<strong>schannel</strong>) SSL backend, so Git validates server certificates
+against the Windows certificate store. This resolves corporate proxy / custom-CA
+failures without a certificate bundle. It is applied via scoped <code class="docutils literal notranslate"><span class="pre">GIT_CONFIG_*</span></code>
+environment overrides (covering git invoked internally by <code class="docutils literal notranslate"><span class="pre">west</span> <span class="pre">update</span></code>) rather
+than mutating your global git config, and is reverted on deactivation. Has no
+effect on non-Windows platforms.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;onsemi.git.useWindowsSchannel&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </section>
 <section id="onsemi-quickstart-enabled">
 <h3>onsemi.quickStart.enabled<a class="headerlink" href="#onsemi-quickstart-enabled" title="Link to this heading"></a></h3>
@@ -366,6 +395,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">sysbuild</span></code>: Enable sysbuild mode (<code class="docutils literal notranslate"><span class="pre">true</span></code>/<code class="docutils literal notranslate"><span class="pre">false</span></code>)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">pristine</span></code>: Pristine build mode (<code class="docutils literal notranslate"><span class="pre">&quot;auto&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;always&quot;</span></code>, or <code class="docutils literal notranslate"><span class="pre">&quot;never&quot;</span></code>)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">arch</span></code>: Target architecture (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;arm&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;riscv64&quot;</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">snippets</span></code>: Array of Zephyr snippet names to apply to the build. Each entry is passed to <code class="docutils literal notranslate"><span class="pre">west</span> <span class="pre">build</span></code> as a repeated <code class="docutils literal notranslate"><span class="pre">-S</span> <span class="pre">&lt;name&gt;</span></code> flag. Defaults to an empty list and is preserved when a configuration is cloned. Available snippets can be listed with the <code class="docutils literal notranslate"><span class="pre">onsemi:</span> <span class="pre">West:</span> <span class="pre">List</span> <span class="pre">Snippets</span></code> command or selected from the <strong>Snippets</strong> multi-select in the Configure Settings panel.</p></li>
 </ul>
 <p><strong>Zephyr-Specific Configuration Example</strong>:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
@@ -462,7 +492,7 @@
 <p><strong>Default</strong>: <code class="docutils literal notranslate"><span class="pre">&quot;clangd&quot;</span></code></p>
 <p><strong>Options</strong>: <code class="docutils literal notranslate"><span class="pre">&quot;clangd&quot;</span></code> | <code class="docutils literal notranslate"><span class="pre">&quot;mscpp&quot;</span></code></p>
 <p><strong>Scope</strong>: <code class="docutils literal notranslate"><span class="pre">resource</span></code></p>
-<p><strong>Description</strong>: Select IntelliSense provider. <code class="docutils literal notranslate"><span class="pre">clangd</span></code> is the default in 0.5; <code class="docutils literal notranslate"><span class="pre">mscpp</span></code> (Microsoft C/C++) remains a supported alternative.</p>
+<p><strong>Description</strong>: Select IntelliSense provider. <code class="docutils literal notranslate"><span class="pre">clangd</span></code> is the default; <code class="docutils literal notranslate"><span class="pre">mscpp</span></code> (Microsoft C/C++) remains a supported alternative.</p>
 <p><strong>Example</strong>:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;onsemi.intelliSenseProvider&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;clangd&quot;</span>
@@ -563,13 +593,15 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: Stable SDK identifier used for dependency matching (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;onsemi-bm-sdk&quot;</span></code>)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">version</span></code>: Semver version of the SDK installation (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;1.4.2&quot;</span></code>)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">envVarName</span></code>: Name of the environment variable the extension exports for this SDK so projects can reference it from <code class="docutils literal notranslate"><span class="pre">CMakePresets.json</span></code> via <code class="docutils literal notranslate"><span class="pre">$env{...}</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;ONSEMI_BM_SDK&quot;</span></code> → used as <code class="docutils literal notranslate"><span class="pre">$env{ONSEMI_BM_SDK}</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">minJLinkVersion</span></code>: Optional minimum recommended J-Link version for this product (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;7.94&quot;</span></code>). When set, onsemi Studio warns (once per window session, non-blocking) if J-Link is missing or older than this version when starting a J-Link debug session or running <code class="docutils literal notranslate"><span class="pre">west</span> <span class="pre">flash</span></code>, and offers a shortcut to the SEGGER download page. SDKs that do not declare this field produce no warning.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">isNVMSupport</span></code>: Optional boolean. When <code class="docutils literal notranslate"><span class="pre">true</span></code>, the <strong>NVM Image Tool</strong> panel and the <code class="docutils literal notranslate"><span class="pre">onsemi.panel.nvm</span></code> command are surfaced for this SDK (via the <code class="docutils literal notranslate"><span class="pre">onsemi.nvmSupported</span></code> context key).</p></li>
 </ul>
 <p><strong>Project-side ``sdk.json``</strong> (sits inside the project, alongside <code class="docutils literal notranslate"><span class="pre">CMakePresets.json</span></code>):</p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">sdkDependencies</span></code>: Map of SDK name → semver range that the project requires. Example:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;sdkDependencies&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;onsemi-bm-sdk&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^1.4.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;onsemi-sdk&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;^1.4.0&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;onsemi-rsl15-sdk&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&gt;=2.0.0 &lt;3.0.0&quot;</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
@@ -578,6 +610,17 @@
 </li>
 </ul>
 <p>When the project is configured the extension resolves each entry against the installed SDKs registered under <code class="docutils literal notranslate"><span class="pre">onsemi.repositories</span></code>. If a dependency cannot be satisfied the extension reports an actionable error of the form <em>“This project requires &lt;NAME&gt; &lt;range&gt;; installed: &lt;list&gt;”</em> and the configure step is aborted. When all dependencies are satisfied the matching SDK’s <code class="docutils literal notranslate"><span class="pre">envVarName</span></code> is exported into the project’s environment so the corresponding <code class="docutils literal notranslate"><span class="pre">$env{...}</span></code> substitution in <code class="docutils literal notranslate"><span class="pre">CMakePresets.json</span></code> resolves to the SDK’s install path.</p>
+</section>
+<section id="auth-gated-toolchains-tools-json">
+<h2>Auth-Gated Toolchains (<code class="docutils literal notranslate"><span class="pre">tools.json</span></code>)<a class="headerlink" href="#auth-gated-toolchains-tools-json" title="Link to this heading"></a></h2>
+<p>A tool declared in an SDK’s <code class="docutils literal notranslate"><span class="pre">tools.json</span></code> may require authorized onsemi access
+to download by setting <code class="docutils literal notranslate"><span class="pre">&quot;auth&quot;:</span> <span class="pre">&quot;github&quot;</span></code> (for example, a custom toolchain).
+When you are not authorized to download such a tool — you cancel the sign-in / PAT
+prompt or your account lacks access — that tool is <strong>skipped</strong> instead of failing
+the whole install. Remaining tools continue installing, and the setup wizard’s
+<strong>Finish</strong> step lists the skipped toolchains with a note that they require
+authorized onsemi access and can be installed later once access is granted. This
+applies to both Express and Advanced setup modes.</p>
 </section>
 </section>
 
@@ -593,8 +636,8 @@
 
   <div role="contentinfo">
 <p>
-    &#169; Copyright 2026, Semiconductor Components Industries, LLC.
-    <span class="lastupdated">Last updated on Jul 10, 2026.</span></p>
+    <span class="copyright-text">&#169; Copyright 2026, Semiconductor Components Industries, LLC</span>.
+    <span class="lastupdated">Last updated on Oct 01, 2026.</span></p>
 
   </div>
 

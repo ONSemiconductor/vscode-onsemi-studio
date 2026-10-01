@@ -1,0 +1,84 @@
+/**
+ * Copyright (c) 2024 onsemi
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+.cs-search-bar {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+}
+
+.cs-search-bar input {
+  width: 100%;
+  padding: 10px 40px 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  font-size: 16px;
+  outline: none;
+  box-shadow: none;
+}
+
+.cs-search-bar i {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  color: #ccc;
+  font-size: 18px;
+}
+
+.code-sample-listing mark {
+  background: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  color: inherit;
+  border-radius: 4px;
+  outline: 4px solid rgba(255, 255, 0, 0.3);
+  outline-offset: 2px;
+}
+
+ul.code-sample-list {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+ul.code-sample-list li {
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.code-sample-name {
+  font-weight: 600;
+  margin-right: 8px;
+}
+
+.code-sample-description {
+  color: #555;
+}
+
+.code-sample-badge {
+  display: inline-block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 1px 8px;
+  margin-right: 8px;
+  border-radius: 10px;
+  vertical-align: middle;
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.code-sample-badge.zephyr {
+  background-color: #7929d2;
+  color: #fff;
+}
+
+.code-sample-badge.bare_metal {
+  background-color: #1a7f37;
+  color: #fff;
+}

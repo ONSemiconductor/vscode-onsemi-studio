@@ -14,15 +14,15 @@
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
       <link rel="stylesheet" type="text/css" href="../_static/css/light.css?v=ddb3986d" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/dark.css?v=8c94e3e7" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=ed08fe59" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/dark.css?v=b5a3722b" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=a56eb22f" />
 
   
     <link rel="shortcut icon" href="../_static/favicon.png"/>
     <link rel="canonical" href="https://onsemiconductor.github.io/vscode-onsemi-studio/quick-start/index.html" />
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=6593fba4"></script>
+      <script src="../_static/documentation_options.js?v=526b71ce"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -105,7 +105,7 @@
 <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     <span class="fa fa-book"> onsemi Studio</span>
-    v: 0.5.17
+    v: 0.6.19
     <span class="fa fa-caret-down"></span>
   </span>
   <div class="rst-other-versions">
@@ -142,11 +142,13 @@
 <li class="toctree-l2"><a class="reference internal" href="#working-with-projects">Working with Projects</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#application-view">Application View</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#switching-the-active-configuration">Switching the Active Configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#pristine-build-mode-zephyr">Pristine Build Mode (Zephyr)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pristine-build-mode-west">Pristine Build Mode (West)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#project-terminal">Project Terminal</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#configure-project-settings">Configure Project Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#repository-tools-panel">Repository Tools Panel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nvm-image-tool-panel">NVM Image Tool Panel</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#debugging-your-application">Debugging Your Application</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#quick-start-debugging">Quick Start Debugging</a></li>
@@ -202,7 +204,7 @@
 <h1>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading"></a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The <strong>Workspace and Tools Setup</strong>, <strong>Import Application</strong>, and <strong>Create New Application</strong> panels support both <strong>Zephyr</strong> and <strong>bare-metal CMake/SDK</strong> projects. The Workspace and Tools Setup wizard detects the project type from the selected source and adapts its steps accordingly. You can also open an existing project folder via <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">→</span> <span class="pre">Open</span> <span class="pre">Folder</span></code> and configure it with the <strong>Configure Settings</strong> panel (onsemi Studio Activity Bar → Configuration → Configure Settings) or by editing <code class="docutils literal notranslate"><span class="pre">.vscode/settings.json</span></code> directly.</p>
+<p>The <strong>Workspace and Tools Setup</strong>, <strong>Import Application</strong>, and <strong>Create New Application</strong> panels support both <strong>West</strong> and <strong>bare-metal CMake/SDK</strong> projects. The Workspace and Tools Setup wizard detects the project type from the selected source and adapts its steps accordingly. You can also open an existing project folder via <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">→</span> <span class="pre">Open</span> <span class="pre">Folder</span></code> and configure it with the <strong>Configure Settings</strong> panel (onsemi Studio Activity Bar → Configuration → Configure Settings) or by editing <code class="docutils literal notranslate"><span class="pre">.vscode/settings.json</span></code> directly.</p>
 </div>
 <section id="workspace-and-tools-setup">
 <h2>Workspace and Tools Setup<a class="headerlink" href="#workspace-and-tools-setup" title="Link to this heading"></a></h2>
@@ -233,6 +235,13 @@
 <li><p><strong>Local Archive</strong>: Browse to a zipped SDK folder, choose extraction location, then click <strong>“Install”</strong> to unzip and register</p></li>
 <li><p><strong>Local Workspace</strong>: Browse to an existing SDK/repository folder to register with the extension</p></li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>While a repository is being cloned, downloaded, or extracted, a <strong>Cancel</strong>
+button is shown on the Configure Repository step. Clicking it aborts the
+in-flight operation and returns cleanly to the configuration form without
+surfacing an error.</p>
+</div>
 <figure class="align-center" id="id2">
 <span id="fig-express-mode-config"></span><a class="reference internal image-reference" href="../_images/express-mode-config.png"><img alt="Express mode configuration panel showing repository setup" src="../_images/express-mode-config.png" style="width: 80%;" />
 </a>
@@ -274,7 +283,7 @@
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The Workspace and Tools Setup wizard detects the project type from the selected source. For a Zephyr/West repository it installs the Zephyr SDK, Python environment, and West dependencies. For a bare-metal CMake/SDK source it installs CMake, Ninja, the ARM GNU Toolchain, and other tools listed in the SDK’s <code class="docutils literal notranslate"><span class="pre">tools.json</span></code> (or the extension’s defaults). To open an already-configured project that does not need new tools, use <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">→</span> <span class="pre">Open</span> <span class="pre">Folder</span></code> and edit the project’s <code class="docutils literal notranslate"><span class="pre">.vscode/settings.json</span></code> directly or via the Configure Settings panel.</p>
+<p>The Workspace and Tools Setup wizard detects the project type from the selected source. For a West repository it installs the Zephyr SDK, Python environment, and West dependencies. For a bare-metal CMake/SDK source it installs CMake, Ninja, the ARM GNU Toolchain, and other tools listed in the SDK’s <code class="docutils literal notranslate"><span class="pre">tools.json</span></code> (or the extension’s defaults). To open an already-configured project that does not need new tools, use <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">→</span> <span class="pre">Open</span> <span class="pre">Folder</span></code> and edit the project’s <code class="docutils literal notranslate"><span class="pre">.vscode/settings.json</span></code> directly or via the Configure Settings panel.</p>
 </div>
 </section>
 </section>
@@ -289,9 +298,15 @@
 <ul>
 <li><p><strong>Select SDK/Repository</strong>: Choose from configured SDKs/Repositories or browse for local folders/archives</p></li>
 <li><p><strong>Choose Toolchain</strong>: Select an existing toolchain or browse for toolchain installation path</p></li>
-<li><p><strong>Select Board Vendor and Target Board</strong> (Zephyr only): Choose the board vendor, then select the specific target board from the available options</p></li>
-<li><p><strong>Select Application(s)</strong>: Pick one or more samples from the chosen SDK/Repository. Both <strong>CMake / bare-metal SDK</strong> and <strong>Zephyr</strong> sources support selecting <strong>multiple samples</strong> in a single import; failure on an individual sample does not abort the rest of the batch. For <strong>Zephyr</strong> imports, every selected sample is paired with the board chosen in the previous step.</p>
+<li><p><strong>Select Board Vendor and Target Board</strong> (West only): Choose the board vendor, then select the specific target board from the available options</p></li>
+<li><p><strong>Select Application(s)</strong>: Pick one or more samples from the chosen SDK/Repository. Both <strong>CMake / bare-metal SDK</strong> and <strong>West</strong> sources support selecting <strong>multiple samples</strong> in a single import; failure on an individual sample does not abort the rest of the batch. For <strong>West</strong> imports, every selected sample is paired with the board chosen in the previous step.</p>
 <p><em>Zephyr only</em> — toggle the <strong>“Repo samples only”</strong> checkbox above the sample list to hide upstream Zephyr samples and show only samples discovered under the selected repository’s <code class="docutils literal notranslate"><span class="pre">samples/</span></code> folder. Uncheck it to also see upstream Zephyr samples. A sample is recognized whenever its directory contains a <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> (a <code class="docutils literal notranslate"><span class="pre">sample.yaml</span></code> is no longer required).</p>
+<p><em>West only</em> — <strong>(experimental)</strong> when a board is selected, the sample picker reads each sample’s twister manifest (<code class="docutils literal notranslate"><span class="pre">sample.yaml</span></code> or the newer <code class="docutils literal notranslate"><span class="pre">tests.yaml</span></code>) plus the <code class="docutils literal notranslate"><span class="pre">samples/boards/&lt;vendor&gt;/&lt;board&gt;/</span></code> path convention and offers a <strong>Compatible / All</strong> toggle. This feature is experimental and relies on support being declared in the sample’s twister manifest (<code class="docutils literal notranslate"><span class="pre">tests.yaml</span></code>) or the board’s <code class="docutils literal notranslate"><span class="pre">&lt;board&gt;_&lt;soc&gt;.yaml</span></code>:</p>
+<ul class="simple">
+<li><p><strong>Compatible</strong> hides samples that cannot build for the selected board. Samples with no twister manifest are hidden in this mode (except board-specific samples under <code class="docutils literal notranslate"><span class="pre">samples/boards/&lt;vendor&gt;/&lt;board&gt;/</span></code>).</p></li>
+<li><p><strong>All</strong> shows every sample and adds a green <strong>Recommended</strong> badge when the board is in the sample’s integration platforms.</p></li>
+</ul>
+<p>The board’s architecture is resolved from its platform file (<code class="docutils literal notranslate"><span class="pre">&lt;board&gt;.yaml</span></code> / <code class="docutils literal notranslate"><span class="pre">&lt;board&gt;_&lt;soc&gt;.yaml</span></code>) and its toolchain variant from the selected SDK, so <code class="docutils literal notranslate"><span class="pre">arch_allow</span></code> / <code class="docutils literal notranslate"><span class="pre">arch_exclude</span></code> and <code class="docutils literal notranslate"><span class="pre">toolchain_allow</span></code> / <code class="docutils literal notranslate"><span class="pre">toolchain_exclude</span></code> are applied along with <code class="docutils literal notranslate"><span class="pre">depends_on</span></code> hardware features. Samples whose support depends on an unevaluable devicetree <code class="docutils literal notranslate"><span class="pre">filter</span></code> stay visible in Compatible mode without a badge.</p>
 </li>
 </ul>
 <p>After import, the project is added to your VS Code workspace with:</p>
@@ -335,8 +350,8 @@
 <li><p><strong>Environment Configuration</strong>:</p>
 <ul>
 <li><p><strong>Toolchain</strong>: Select the toolchain for building</p></li>
-<li><p><strong>Board Vendor</strong>: Choose the board vendor (Zephyr)</p></li>
-<li><p><strong>Target Board</strong>: Select the target board (Zephyr)</p></li>
+<li><p><strong>Board Vendor</strong>: Choose the board vendor (West)</p></li>
+<li><p><strong>Target Board</strong>: Select the target board (West)</p></li>
 </ul>
 </li>
 <li><p>Click <strong>Create Application</strong> to create your new application</p></li>
@@ -357,11 +372,11 @@
 <ul class="simple">
 <li><p>Build, Clean, Rebuild</p></li>
 <li><p>Configure (CMake projects)</p></li>
-<li><p>Flash (Zephyr projects)</p></li>
+<li><p>Flash (West projects)</p></li>
 <li><p>Debug (Start debugging with active ELF)</p></li>
 <li><p>Stop Task (cancels the in-flight build / configure / clean / flash for that project)</p></li>
-<li><p>Memory Reports (Zephyr projects)</p></li>
-<li><p>KConfig (<code class="docutils literal notranslate"><span class="pre">menuconfig</span></code> / <code class="docutils literal notranslate"><span class="pre">guiconfig</span></code>) for Zephyr projects and for CMake projects that expose <code class="docutils literal notranslate"><span class="pre">menuconfig</span></code> / <code class="docutils literal notranslate"><span class="pre">guiconfig</span></code> targets</p></li>
+<li><p>Memory Reports (West projects)</p></li>
+<li><p>KConfig (<code class="docutils literal notranslate"><span class="pre">menuconfig</span></code> / <code class="docutils literal notranslate"><span class="pre">guiconfig</span></code>) for West projects and for CMake projects that expose <code class="docutils literal notranslate"><span class="pre">menuconfig</span></code> / <code class="docutils literal notranslate"><span class="pre">guiconfig</span></code> targets</p></li>
 <li><p>Debug Files submenu:
 - Select Active ELF
 - Clear Active ELF
@@ -375,7 +390,7 @@
 <li><p><strong>Configuration</strong></p>
 <ul>
 <li><p><strong>Active Configuration</strong>: Quick selector for build configurations</p></li>
-<li><p><strong>Board</strong>: Change target board (Zephyr Projects)</p></li>
+<li><p><strong>Board</strong>: Change target board (West Projects)</p></li>
 <li><p><strong>Toolchain</strong>: Switch between registered toolchains</p></li>
 </ul>
 </li>
@@ -384,11 +399,11 @@
 <li><p><strong>Build</strong>: Compile the project</p></li>
 <li><p><strong>Clean</strong>: Remove build artifacts</p></li>
 <li><p><strong>Clean and Rebuild</strong>: Clean then build</p></li>
-<li><p><strong>Flash</strong>: Load firmware to the board (Zephyr Projects)</p></li>
+<li><p><strong>Flash</strong>: Load firmware to the board (West Projects)</p></li>
 <li><p><strong>Configure</strong>: Configure the project (Bare-metal CMake Projects)</p></li>
 <li><p><strong>Debug</strong>: Open Debug Configuration Panel</p></li>
 <li><p><strong>Stop Task</strong>: Cancel a running build / configure / clean / flash (visible only while a task is running)</p></li>
-<li><p><strong>KConfig Config</strong>: Run <code class="docutils literal notranslate"><span class="pre">menuconfig</span></code> or <code class="docutils literal notranslate"><span class="pre">guiconfig</span></code> (Zephyr projects, and CMake projects with <code class="docutils literal notranslate"><span class="pre">menuconfig</span></code> / <code class="docutils literal notranslate"><span class="pre">guiconfig</span></code> targets)</p></li>
+<li><p><strong>KConfig Config</strong>: Run <code class="docutils literal notranslate"><span class="pre">menuconfig</span></code> or <code class="docutils literal notranslate"><span class="pre">guiconfig</span></code> (West projects, and CMake projects with <code class="docutils literal notranslate"><span class="pre">menuconfig</span></code> / <code class="docutils literal notranslate"><span class="pre">guiconfig</span></code> targets)</p></li>
 </ul>
 </li>
 <li><p><strong>Documentation</strong>: Text, RST, and MD files</p></li>
@@ -396,7 +411,7 @@
 <li><p><strong>Source Files</strong>: All <code class="docutils literal notranslate"><span class="pre">.c</span></code> files</p></li>
 <li><p><strong>Output Files</strong>: Build outputs (<code class="docutils literal notranslate"><span class="pre">*.elf</span></code>, <code class="docutils literal notranslate"><span class="pre">*.map</span></code>, <code class="docutils literal notranslate"><span class="pre">*.dts</span></code>, <code class="docutils literal notranslate"><span class="pre">.config</span></code>)</p></li>
 <li><p><strong>Components</strong>: All source files compiled into the final output</p></li>
-<li><p><strong>Configuration</strong>: Kconfig and DeviceTree files (Zephyr Projects)</p></li>
+<li><p><strong>Configuration</strong>: Kconfig and DeviceTree files (West Projects)</p></li>
 </ul>
 <figure class="align-center" id="id8">
 <span id="fig-application-view"></span><a class="reference internal image-reference" href="../_images/application-view.png"><img alt="Application view showing project structure and actions" src="../_images/application-view.png" style="width: 80%;" />
@@ -426,9 +441,9 @@
 <p>Changes made in the Configure Settings panel are not applied until you click <strong>Save</strong>. Unsaved changes are kept only in the panel.</p>
 </div>
 </section>
-<section id="pristine-build-mode-zephyr">
-<h3>Pristine Build Mode (Zephyr)<a class="headerlink" href="#pristine-build-mode-zephyr" title="Link to this heading"></a></h3>
-<p>For Zephyr build configurations, each entry under <code class="docutils literal notranslate"><span class="pre">onsemi.build.configurations</span></code> accepts a <code class="docutils literal notranslate"><span class="pre">pristine</span></code> property that controls whether <code class="docutils literal notranslate"><span class="pre">west</span> <span class="pre">build</span></code> re-runs CMake from scratch:</p>
+<section id="pristine-build-mode-west">
+<h3>Pristine Build Mode (West)<a class="headerlink" href="#pristine-build-mode-west" title="Link to this heading"></a></h3>
+<p>For West build configurations, each entry under <code class="docutils literal notranslate"><span class="pre">onsemi.build.configurations</span></code> accepts a <code class="docutils literal notranslate"><span class="pre">pristine</span></code> property that controls whether <code class="docutils literal notranslate"><span class="pre">west</span> <span class="pre">build</span></code> re-runs CMake from scratch:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;auto&quot;</span></code> <em>(default)</em> — Re-run CMake only when inputs (board, overlays, <code class="docutils literal notranslate"><span class="pre">prj.conf</span></code>, etc.) change. Fastest for incremental development.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;always&quot;</span></code> — Always wipe the build directory before configuring. Use this when you have changed something CMake’s auto-detection cannot see (for example, you moved or renamed the project on disk and the build directory’s cached source path is now stale).</p></li>
@@ -475,10 +490,65 @@
 <li><p>Clone existing configurations using the <strong>“Clone”</strong> button</p></li>
 <li><p>Toggle <strong>Active</strong> switch to set the active configuration</p></li>
 <li><p>Configure build-specific settings (board, sysbuild, pristine mode, args, environment variables)</p></li>
+<li><p><em>(West)</em> Select <strong>Snippets</strong> to apply from the multi-select — available snippets are discovered from the sibling Zephyr tree (<code class="docutils literal notranslate"><span class="pre">&lt;west-dir&gt;/zephyr/snippets</span></code>) and the repository’s own <code class="docutils literal notranslate"><span class="pre">snippets/</span></code> folder, and are passed to <code class="docutils literal notranslate"><span class="pre">west</span> <span class="pre">build</span></code> as repeated <code class="docutils literal notranslate"><span class="pre">-S</span> <span class="pre">&lt;name&gt;</span></code> flags</p></li>
 </ul>
 </li>
+</ul>
+<figure class="align-center" id="id10">
+<span id="fig-configure-settings-snippets"></span><a class="reference internal image-reference" href="../_images/configure-settings-snippets.png"><img alt="Configure Settings panel showing the West Snippets multi-select" src="../_images/configure-settings-snippets.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 10 </span><span class="caption-text">West Snippets multi-select in the Configure Settings panel</span><a class="headerlink" href="#id10" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<ul class="simple">
 <li><p><strong>Save Changes</strong>: Click the <strong>“Save”</strong> button after making changes</p></li>
 </ul>
+</section>
+<section id="repository-tools-panel">
+<h2>Repository Tools Panel<a class="headerlink" href="#repository-tools-panel" title="Link to this heading"></a></h2>
+<p>The <strong>Repository Tools</strong> panel lists every registered repository that still
+exists on disk (from <code class="docutils literal notranslate"><span class="pre">onsemi.repositories</span></code>) grouped with its configured tool
+installations. Open it from the Command Palette (<code class="docutils literal notranslate"><span class="pre">onsemi:</span> <span class="pre">Repository</span> <span class="pre">Tools</span></code>) or
+from the title-bar action on the Application view. The panel is only available
+when at least one repository is registered (<code class="docutils literal notranslate"><span class="pre">onsemi.hasRepositories</span></code> context
+key).</p>
+<p>For each tool the panel shows:</p>
+<ul class="simple">
+<li><p>Its parsed <strong>version</strong> and <strong>source</strong> (managed / system)</p></li>
+<li><p><strong>Toolchain</strong> and <strong>duplicate-entry</strong> badges where applicable</p></li>
+<li><p>Whether the tool’s install path <strong>exists on disk</strong></p></li>
+<li><p>A <strong>west</strong> badge for West-based projects</p></li>
+</ul>
+<p>You can edit a tool’s install path inline or via a folder picker, add new tools
+per repository, and remove tools — all changes are written back to
+<code class="docutils literal notranslate"><span class="pre">onsemi.repositories</span></code>.</p>
+<figure class="align-center" id="id11">
+<span id="fig-repository-tools-panel"></span><a class="reference internal image-reference" href="../_images/repository-tools-panel.png"><img alt="Repository Tools panel listing repositories with their configured tools, versions, and badges" src="../_images/repository-tools-panel.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 11 </span><span class="caption-text">Repository Tools panel</span><a class="headerlink" href="#id11" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="nvm-image-tool-panel">
+<h2>NVM Image Tool Panel<a class="headerlink" href="#nvm-image-tool-panel" title="Link to this heading"></a></h2>
+<p>The <strong>NVM Image Tool</strong> panel mirrors the SK5 NVM plugin options, generates the
+full <code class="docutils literal notranslate"><span class="pre">nvmi</span></code> command line, and launches <code class="docutils literal notranslate"><span class="pre">nvmi.exe</span></code> directly from VS Code. Open
+it with the <code class="docutils literal notranslate"><span class="pre">onsemi:</span> <span class="pre">NVM</span> <span class="pre">Image</span> <span class="pre">Tool</span></code> command.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The panel is only surfaced when a registered SDK declares NVM support
+(<code class="docutils literal notranslate"><span class="pre">isNVMSupport:</span> <span class="pre">true</span></code> in its <code class="docutils literal notranslate"><span class="pre">sdk.json</span></code>); the <code class="docutils literal notranslate"><span class="pre">onsemi.panel.nvm</span></code> command
+is gated behind the <code class="docutils literal notranslate"><span class="pre">onsemi.nvmSupported</span></code> context key.</p>
+</div>
+<figure class="align-center" id="id12">
+<span id="fig-nvm-panel"></span><a class="reference internal image-reference" href="../_images/nvm-panel.png"><img alt="NVM Image Tool panel showing NVM options and the generated nvmi command line" src="../_images/nvm-panel.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 12 </span><span class="caption-text">NVM Image Tool panel</span><a class="headerlink" href="#id12" title="Link to this image"></a></p>
+</figcaption>
+</figure>
 </section>
 <section id="debugging-your-application">
 <h2>Debugging Your Application<a class="headerlink" href="#debugging-your-application" title="Link to this heading"></a></h2>
@@ -488,6 +558,24 @@
 <li><p>J-Link debugger connected to your target board</p></li>
 <li><p>J-Link GDB Server (<code class="docutils literal notranslate"><span class="pre">JLinkGDBServerCL.exe</span></code>) must be in system PATH or manually specified</p></li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>J-Link version check</strong> — When you start a J-Link debug session or run
+<code class="docutils literal notranslate"><span class="pre">west</span> <span class="pre">flash</span></code>, onsemi Studio warns (once per window session, non-blocking) if
+J-Link is missing or older than the version the <strong>active SDK</strong> recommends via
+<code class="docutils literal notranslate"><span class="pre">minJLinkVersion</span></code> in its <code class="docutils literal notranslate"><span class="pre">sdk.json</span></code>, and offers a shortcut to the SEGGER
+download page. The Debug Configuration panel also shows a non-blocking banner
+and highlights the <strong>GDB Server</strong> input when the configured J-Link is
+missing or outdated. Saving and debugging are never blocked, and SDKs that do
+not declare <code class="docutils literal notranslate"><span class="pre">minJLinkVersion</span></code> produce no warning.</p>
+</div>
+<figure class="align-center" id="id13">
+<span id="fig-debug-jlink-version-warning"></span><a class="reference internal image-reference" href="../_images/debug-jlink-version-warning.png"><img alt="Debug Configuration panel showing the non-blocking J-Link version warning banner" src="../_images/debug-jlink-version-warning.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 13 </span><span class="caption-text">Non-blocking J-Link version warning banner in the Debug Configuration panel</span><a class="headerlink" href="#id13" title="Link to this image"></a></p>
+</figcaption>
+</figure>
 </section>
 <section id="quick-start-debugging">
 <h3>Quick Start Debugging<a class="headerlink" href="#quick-start-debugging" title="Link to this heading"></a></h3>
@@ -532,11 +620,11 @@
 </ul>
 </li>
 </ol>
-<figure class="align-center" id="id10">
+<figure class="align-center" id="id14">
 <span id="fig-debug-target-tab"></span><a class="reference internal image-reference" href="../_images/debug-target-tab.png"><img alt="Debug Configuration Panel - Target Configuration" src="../_images/debug-target-tab.png" style="width: 80%;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Debug Configuration Panel - Target Configuration</span><a class="headerlink" href="#id10" title="Link to this image"></a></p>
+<p><span class="caption-number">Fig. 14 </span><span class="caption-text">Debug Configuration Panel - Target Configuration</span><a class="headerlink" href="#id14" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
@@ -588,11 +676,11 @@
 </li>
 <li><p><strong>Custom Reset Commands</strong>: Enter custom reset commands when standard reset is insufficient</p></li>
 </ol>
-<figure class="align-center" id="id11">
+<figure class="align-center" id="id15">
 <span id="fig-debug-target-initialization"></span><a class="reference internal image-reference" href="../_images/debug-target-initialization.png"><img alt="Debug Configuration Panel - Initialization Commands" src="../_images/debug-target-initialization.png" style="width: 80%;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 11 </span><span class="caption-text">Debug Configuration Panel - Initialization Commands</span><a class="headerlink" href="#id11" title="Link to this image"></a></p>
+<p><span class="caption-number">Fig. 15 </span><span class="caption-text">Debug Configuration Panel - Initialization Commands</span><a class="headerlink" href="#id15" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
@@ -606,11 +694,11 @@
 </ul>
 </li>
 </ol>
-<figure class="align-center" id="id12">
+<figure class="align-center" id="id16">
 <span id="fig-debug-gdb-tab"></span><a class="reference internal image-reference" href="../_images/debug-gdb-tab.png"><img alt="Debug Configuration Panel - GDB Settings" src="../_images/debug-gdb-tab.png" style="width: 80%;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 12 </span><span class="caption-text">Debug Configuration Panel - GDB Settings</span><a class="headerlink" href="#id12" title="Link to this image"></a></p>
+<p><span class="caption-number">Fig. 16 </span><span class="caption-text">Debug Configuration Panel - GDB Settings</span><a class="headerlink" href="#id16" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
@@ -625,11 +713,11 @@
 </ul>
 </li>
 </ol>
-<figure class="align-center" id="id13">
+<figure class="align-center" id="id17">
 <span id="fig-debug-peripheral-svd"></span><a class="reference internal image-reference" href="../_images/debug-peripheral-svd.png"><img alt="Debug Configuration Panel - Peripheral Inspector" src="../_images/debug-peripheral-svd.png" style="width: 80%;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 13 </span><span class="caption-text">Debug Configuration Panel - Peripheral Inspector</span><a class="headerlink" href="#id13" title="Link to this image"></a></p>
+<p><span class="caption-number">Fig. 17 </span><span class="caption-text">Debug Configuration Panel - Peripheral Inspector</span><a class="headerlink" href="#id17" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
@@ -645,11 +733,11 @@
 <p class="admonition-title">Note</p>
 <p><strong>Selecting Active ELF File</strong>: When multiple ELF files are present in your project, use the bottom status bar to select the active ELF file for debugging. If the Debug Configuration panel is already open when you change the active ELF in the status bar, you must save the Debug Configuration for the panel to display the updated ELF path.</p>
 </div>
-<figure class="align-center" id="id14">
+<figure class="align-center" id="id18">
 <span id="fig-start-debugging"></span><a class="reference internal image-reference" href="../_images/start-debugging.png"><img alt="Start debugging" src="../_images/start-debugging.png" style="width: 80%;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 14 </span><span class="caption-text">Start debugging</span><a class="headerlink" href="#id14" title="Link to this image"></a></p>
+<p><span class="caption-number">Fig. 18 </span><span class="caption-text">Start debugging</span><a class="headerlink" href="#id18" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
@@ -678,8 +766,8 @@
 
   <div role="contentinfo">
 <p>
-    &#169; Copyright 2026, Semiconductor Components Industries, LLC.
-    <span class="lastupdated">Last updated on Jul 10, 2026.</span></p>
+    <span class="copyright-text">&#169; Copyright 2026, Semiconductor Components Industries, LLC</span>.
+    <span class="lastupdated">Last updated on Oct 01, 2026.</span></p>
 
   </div>
 

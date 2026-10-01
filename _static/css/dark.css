@@ -389,6 +389,38 @@ html[data-theme="dark"] .rst-content .highlight .w {
     color: #e8e9ea !important;  /* Whitespace - light gray */
 }
 
+/* Generic/console tokens (e.g. `.. code-block:: console` output and prompts) */
+html[data-theme="dark"] .highlight .go,
+html[data-theme="dark"] .rst-content .highlight .go {
+    color: #c9d1d9 !important;  /* Command / generic output - readable light gray */
+}
+
+html[data-theme="dark"] .highlight .gp,
+html[data-theme="dark"] .rst-content .highlight .gp {
+    color: #7ee787 !important;  /* Shell prompt ($, #) - green */
+}
+
+html[data-theme="dark"] .highlight .gi,
+html[data-theme="dark"] .rst-content .highlight .gi {
+    color: #7ee787 !important;  /* Inserted lines - green */
+}
+
+html[data-theme="dark"] .highlight .gd,
+html[data-theme="dark"] .highlight .gt,
+html[data-theme="dark"] .highlight .gr,
+html[data-theme="dark"] .rst-content .highlight .gd,
+html[data-theme="dark"] .rst-content .highlight .gt,
+html[data-theme="dark"] .rst-content .highlight .gr {
+    color: #ff7b72 !important;  /* Deleted / traceback / error - soft red */
+}
+
+html[data-theme="dark"] .highlight .gh,
+html[data-theme="dark"] .highlight .gu,
+html[data-theme="dark"] .rst-content .highlight .gh,
+html[data-theme="dark"] .rst-content .highlight .gu {
+    color: #79c0ff !important;  /* Generic headings - light blue */
+}
+
 /* Dark mode h3 background styling */
 html[data-theme="dark"] h3,
 html[data-theme="dark"] .rst-content h3 {

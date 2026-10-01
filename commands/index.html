@@ -14,15 +14,15 @@
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
       <link rel="stylesheet" type="text/css" href="../_static/css/light.css?v=ddb3986d" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/dark.css?v=8c94e3e7" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=ed08fe59" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/dark.css?v=b5a3722b" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=a56eb22f" />
 
   
     <link rel="shortcut icon" href="../_static/favicon.png"/>
     <link rel="canonical" href="https://onsemiconductor.github.io/vscode-onsemi-studio/commands/index.html" />
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=6593fba4"></script>
+      <script src="../_static/documentation_options.js?v=526b71ce"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -105,7 +105,7 @@
 <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     <span class="fa fa-book"> onsemi Studio</span>
-    v: 0.5.17
+    v: 0.6.19
     <span class="fa fa-caret-down"></span>
   </span>
   <div class="rst-other-versions">
@@ -138,6 +138,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#project-commands">Project Commands</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#west-commands-zephyr">West Commands (Zephyr)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#intellisense-commands">IntelliSense Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#panel-commands">Panel Commands</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../configuration/index.html">Configuration</a></li>
@@ -269,6 +270,9 @@
 <tr class="row-even"><td><p><cite>onsemi: Project: Open Terminal</cite></p></td>
 <td><p>Open integrated terminal with project environment</p></td>
 </tr>
+<tr class="row-odd"><td><p><cite>onsemi: Remove Folder from Workspace</cite></p></td>
+<td><p>Remove the project’s folder from the current VS Code workspace (Workbench view context menu), mirroring the File Explorer’s built-in action</p></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -307,6 +311,9 @@
 <tr class="row-even"><td><p><cite>onsemi: West: Install Python Packages</cite></p></td>
 <td><p>Install required Python packages</p></td>
 </tr>
+<tr class="row-odd"><td><p><cite>onsemi: West: List Snippets</cite></p></td>
+<td><p>List available Zephyr snippets discovered from the sibling Zephyr tree (<code class="docutils literal notranslate"><span class="pre">&lt;west-dir&gt;/zephyr/snippets</span></code>) and the repository’s own <code class="docutils literal notranslate"><span class="pre">snippets/</span></code> folder (output shown in the output channel)</p></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -336,6 +343,34 @@
 </tbody>
 </table>
 </section>
+<section id="panel-commands">
+<h2>Panel Commands<a class="headerlink" href="#panel-commands" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Panel commands open dedicated webviews. Some are gated by context keys and
+only appear when the workspace state enables them.</p>
+</div>
+<span id="table-panel-commands"></span><table class="docutils align-default" id="id5">
+<caption><span class="caption-number">Table 5 </span><span class="caption-text">Panel Commands</span><a class="headerlink" href="#id5" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 40.0%" />
+<col style="width: 60.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><cite>onsemi: Repository Tools</cite></p></td>
+<td><p>Open the <strong>Repository Tools</strong> panel, which lists every registered repository that still exists on disk (from <code class="docutils literal notranslate"><span class="pre">onsemi.repositories</span></code>) grouped with its configured tool installations. Available from the Command Palette and as a title-bar action on the Application view. Gated behind the <code class="docutils literal notranslate"><span class="pre">onsemi.hasRepositories</span></code> context key.</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>onsemi: NVM Image Tool</cite></p></td>
+<td><p>Open the <strong>NVM Image Tool</strong> panel to configure and launch <code class="docutils literal notranslate"><span class="pre">nvmi.exe</span></code>. Only surfaced when a registered SDK declares NVM support (<code class="docutils literal notranslate"><span class="pre">isNVMSupport:</span> <span class="pre">true</span></code> in its <code class="docutils literal notranslate"><span class="pre">sdk.json</span></code>); gated behind the <code class="docutils literal notranslate"><span class="pre">onsemi.nvmSupported</span></code> context key.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
 </section>
 
 
@@ -350,8 +385,8 @@
 
   <div role="contentinfo">
 <p>
-    &#169; Copyright 2026, Semiconductor Components Industries, LLC.
-    <span class="lastupdated">Last updated on Jul 10, 2026.</span></p>
+    <span class="copyright-text">&#169; Copyright 2026, Semiconductor Components Industries, LLC</span>.
+    <span class="lastupdated">Last updated on Oct 01, 2026.</span></p>
 
   </div>
 

@@ -977,6 +977,15 @@ footer > hr {
 footer {
     color: var(--onsemi-text-light);
     font-size: 0.9rem;
+	font-family: "Inter", system-ui, sans-serif;
+}
+
+/* Copyright + last-updated line in the footer */
+footer p,
+footer p .copyright-text,
+footer p .lastupdated {
+	font-family: "Inter", system-ui, sans-serif;
+	font-size: 0.8rem;
 }
 
 footer a {
@@ -1426,10 +1435,61 @@ table.docutils td .rst-content code.literal,
   justify-content: center !important;
 }
 
-/* Keep nested indentation consistent (add beyond base 2.1rem) */
-.wy-menu-vertical li.toctree-l2 > a { padding-left: 2.6rem !important; }
-.wy-menu-vertical li.toctree-l3 > a { padding-left: 3.1rem !important; }
-.wy-menu-vertical li.toctree-l4 > a { padding-left: 3.6rem !important; }
+/* Keep nested indentation consistent and clearly stepped.
+   navigation_depth is 5, so EVERY level (l1-l5) must have an explicit,
+   increasing indent. If a deeper level is left undefined it falls back to
+   the base padding and renders to the LEFT of its parent, making
+   sub-headings look like siblings. Steps are ~1.1rem so the hierarchy is
+   easy to read at a glance. */
+.wy-menu-vertical li.toctree-l1 > a { padding-left: 1.8rem !important; }
+.wy-menu-vertical li.toctree-l2 > a { padding-left: 2.9rem !important; }
+.wy-menu-vertical li.toctree-l3 > a { padding-left: 4.0rem !important; }
+.wy-menu-vertical li.toctree-l4 > a { padding-left: 5.1rem !important; }
+.wy-menu-vertical li.toctree-l5 > a { padding-left: 6.2rem !important; }
+
+/* Vertical guide rails visually connect a parent heading to its children,
+   so it is obvious which headings contain sub-headings. Each rail is drawn
+   at the parent's indent and spans the whole child group. */
+.wy-menu-vertical li.toctree-l1 > ul,
+.wy-menu-vertical li.toctree-l2 > ul,
+.wy-menu-vertical li.toctree-l3 > ul,
+.wy-menu-vertical li.toctree-l4 > ul {
+  position: relative !important;
+}
+.wy-menu-vertical li.toctree-l1 > ul::before { left: 1.85rem; }
+.wy-menu-vertical li.toctree-l2 > ul::before { left: 2.95rem; }
+.wy-menu-vertical li.toctree-l3 > ul::before { left: 4.05rem; }
+.wy-menu-vertical li.toctree-l4 > ul::before { left: 5.15rem; }
+.wy-menu-vertical li.toctree-l1 > ul::before,
+.wy-menu-vertical li.toctree-l2 > ul::before,
+.wy-menu-vertical li.toctree-l3 > ul::before,
+.wy-menu-vertical li.toctree-l4 > ul::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  border-left: 1px solid rgba(127, 127, 127, 0.25);
+  pointer-events: none;
+}
+
+/* Mark headings that contain sub-headings: bolder label plus a caret on the
+   right edge, so parents are distinguishable from leaf items. */
+.wy-menu-vertical li:has(> ul) > a {
+  font-weight: 600 !important;
+}
+.wy-menu-vertical li:has(> ul) > a::after {
+  content: "\203A";              /* › : collapsed / has children */
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.55;
+  font-weight: 700;
+}
+.wy-menu-vertical li.current:has(> ul) > a::after {
+  content: "\2304";              /* ⌄ : expanded */
+}
 
 /* Align captions with the same left start */
 .wy-menu-vertical p.caption,

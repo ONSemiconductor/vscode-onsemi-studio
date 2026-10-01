@@ -14,15 +14,15 @@
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
       <link rel="stylesheet" type="text/css" href="../_static/css/light.css?v=ddb3986d" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/dark.css?v=8c94e3e7" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=ed08fe59" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/dark.css?v=b5a3722b" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=a56eb22f" />
 
   
     <link rel="shortcut icon" href="../_static/favicon.png"/>
     <link rel="canonical" href="https://onsemiconductor.github.io/vscode-onsemi-studio/faq/index.html" />
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=6593fba4"></script>
+      <script src="../_static/documentation_options.js?v=526b71ce"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -104,7 +104,7 @@
 <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     <span class="fa fa-book"> onsemi Studio</span>
-    v: 0.5.17
+    v: 0.6.19
     <span class="fa fa-caret-down"></span>
   </span>
   <div class="rst-other-versions">
@@ -178,7 +178,7 @@
 <section id="general-questions">
 <h2>General Questions<a class="headerlink" href="#general-questions" title="Link to this heading"></a></h2>
 <p><strong>Q: Do the Workspace and Tools Setup, Import Application, and Create New Application wizards work for bare-metal CMake / SDK projects?</strong></p>
-<p>A: Yes. In 0.5 all three wizards support both <strong>Zephyr</strong> and <strong>bare-metal CMake / SDK</strong> projects. The Workspace and Tools Setup wizard detects the project type from the selected source and adapts its steps. Import Application supports multi-sample selection for both CMake / SDK and Zephyr sources; for Zephyr, each selected sample is paired with the board chosen in the wizard. Create New Application generates either an empty project or a copy of a sample template, with a <code class="docutils literal notranslate"><span class="pre">.vscode/settings.json</span></code> populated with toolchain, environment variables, and an initial build configuration.</p>
+<p>A: Yes. All three wizards support both <strong>Zephyr</strong> and <strong>bare-metal CMake / SDK</strong> projects. The Workspace and Tools Setup wizard detects the project type from the selected source and adapts its steps. Import Application supports multi-sample selection for both CMake / SDK and Zephyr sources; for Zephyr, each selected sample is paired with the board chosen in the wizard. Create New Application generates either an empty project or a copy of a sample template, with a <code class="docutils literal notranslate"><span class="pre">.vscode/settings.json</span></code> populated with toolchain, environment variables, and an initial build configuration.</p>
 <p><strong>Q: How do I remove a configured SDK or Repository?</strong></p>
 <p>A: In the Application view, hover the SDK or Repository node and click the inline trash icon. The extension prompts for confirmation, then removes the entry from <code class="docutils literal notranslate"><span class="pre">onsemi.repositories</span></code>. Files on disk are not deleted.</p>
 <p><strong>Q: How do I cancel a long-running build / configure / clean / flash?</strong></p>
@@ -189,6 +189,10 @@
 <p>A: Yes. Use VS Code’s multi-root workspace feature. Each project maintains independent settings in its <code class="docutils literal notranslate"><span class="pre">.vscode/settings.json</span></code>.</p>
 <p><strong>Q: How do I switch between debug and release builds?</strong></p>
 <p>A: Define multiple build configurations in <code class="docutils literal notranslate"><span class="pre">onsemi.build.configurations</span></code> and switch using the “Select Active Configuration” command or via the Application Explorer.</p>
+<p><strong>Q: What is the Repository Tools panel and how do I open it?</strong></p>
+<p>A: Run <code class="docutils literal notranslate"><span class="pre">onsemi:</span> <span class="pre">Repository</span> <span class="pre">Tools</span></code> (or use the title-bar action on the Application view) to open a panel that lists every registered repository still present on disk (from <code class="docutils literal notranslate"><span class="pre">onsemi.repositories</span></code>) grouped with its configured tool installations — showing each tool’s version, source (managed/system), toolchain and duplicate badges, and whether its install path exists. You can edit install paths inline, add tools per repository, and remove tools. The panel is available only when at least one repository is registered.</p>
+<p><strong>Q: The NVM Image Tool command is not showing. Why?</strong></p>
+<p>A: The <code class="docutils literal notranslate"><span class="pre">onsemi:</span> <span class="pre">NVM</span> <span class="pre">Image</span> <span class="pre">Tool</span></code> command and panel are surfaced only when a registered SDK declares NVM support (<code class="docutils literal notranslate"><span class="pre">isNVMSupport:</span> <span class="pre">true</span></code> in its <code class="docutils literal notranslate"><span class="pre">sdk.json</span></code>). If no registered SDK declares it, the command stays hidden.</p>
 </section>
 <section id="debugging">
 <h2>Debugging<a class="headerlink" href="#debugging" title="Link to this heading"></a></h2>
@@ -242,6 +246,15 @@
 <span class="p">}</span>
 </pre></div>
 </div>
+<p><strong>Q: How do I apply Zephyr snippets to a build?</strong></p>
+<p>A: Add a <code class="docutils literal notranslate"><span class="pre">snippets</span></code> array to the build configuration under <code class="docutils literal notranslate"><span class="pre">onsemi.build.configurations</span></code> (each name is passed to <code class="docutils literal notranslate"><span class="pre">west</span> <span class="pre">build</span></code> as <code class="docutils literal notranslate"><span class="pre">-S</span> <span class="pre">&lt;name&gt;</span></code>), or select them from the <strong>Snippets</strong> multi-select in the Configure Settings panel. Run <code class="docutils literal notranslate"><span class="pre">onsemi:</span> <span class="pre">West:</span> <span class="pre">List</span> <span class="pre">Snippets</span></code> to see the snippets discovered from the Zephyr tree and the repository’s own <code class="docutils literal notranslate"><span class="pre">snippets/</span></code> folder:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;my-config&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;boardName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;evb&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;snippets&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;cdc-acm-console&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </section>
 <section id="cmake-specific">
 <h2>CMake-Specific<a class="headerlink" href="#cmake-specific" title="Link to this heading"></a></h2>
@@ -265,6 +278,8 @@
 <span class="p">}</span>
 </pre></div>
 </div>
+<p><strong>Q: I edited ``CMakePresets.json`` — do I need to regenerate my build configurations?</strong></p>
+<p>A: No. For bare-metal CMake projects the extension watches <code class="docutils literal notranslate"><span class="pre">CMakePresets.json</span></code> and automatically re-derives the build configurations in <code class="docutils literal notranslate"><span class="pre">.vscode/settings.json</span></code> on create/modify/delete, diffing against the previous state to avoid spurious configuration-change prompts. <code class="docutils literal notranslate"><span class="pre">include</span></code> directives are resolved recursively (with cycle detection and <code class="docutils literal notranslate"><span class="pre">$penv{}</span></code> macro expansion).</p>
 <p><strong>Q: How do I build specific targets?</strong></p>
 <p>A: The extension will prompt for targets during build. You can also specify in tasks.json:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
@@ -307,8 +322,8 @@
 
   <div role="contentinfo">
 <p>
-    &#169; Copyright 2026, Semiconductor Components Industries, LLC.
-    <span class="lastupdated">Last updated on Jul 10, 2026.</span></p>
+    <span class="copyright-text">&#169; Copyright 2026, Semiconductor Components Industries, LLC</span>.
+    <span class="lastupdated">Last updated on Oct 01, 2026.</span></p>
 
   </div>
 

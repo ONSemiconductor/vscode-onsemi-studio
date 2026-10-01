@@ -14,15 +14,15 @@
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
       <link rel="stylesheet" type="text/css" href="../_static/css/light.css?v=ddb3986d" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/dark.css?v=8c94e3e7" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=ed08fe59" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/dark.css?v=b5a3722b" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=a56eb22f" />
 
   
     <link rel="shortcut icon" href="../_static/favicon.png"/>
     <link rel="canonical" href="https://onsemiconductor.github.io/vscode-onsemi-studio/troubleshooting/index.html" />
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=6593fba4"></script>
+      <script src="../_static/documentation_options.js?v=526b71ce"></script>
       <script src="../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -105,7 +105,7 @@
 <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     <span class="fa fa-book"> onsemi Studio</span>
-    v: 0.5.17
+    v: 0.6.19
     <span class="fa fa-caret-down"></span>
   </span>
   <div class="rst-other-versions">
@@ -147,7 +147,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#board-not-found">Board Not Found</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#toolchain-not-detected">Toolchain Not Detected</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#output-shows-certificate-errors">Output Shows Certificate Errors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#toolchain-download-requires-authorized-onsemi-access">Toolchain Download Requires Authorized onsemi Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#toolchain-extraction-fails-with-eperm">Toolchain Extraction Fails with <code class="docutils literal notranslate"><span class="pre">EPERM</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#j-link-gdb-server-not-found">J-Link GDB Server Not Found</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#j-link-version-warning">J-Link Version Warning</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#long-path-errors-on-windows">Long Path Errors on Windows</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#west-commands-fail-after-renaming-workspace">West Commands Fail After Renaming Workspace</a></li>
 </ul>
@@ -204,7 +207,7 @@
 <span id="fig-venv-settings"></span><a class="reference internal image-reference" href="../_images/venv-settings.png"><img alt="Setting the virtual environment path in VS Code settings" src="../_images/venv-settings.png" style="width: 80%;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 15 </span><span class="caption-text">Setting the virtual environment path in VS Code settings</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+<p><span class="caption-number">Fig. 19 </span><span class="caption-text">Setting the virtual environment path in VS Code settings</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
@@ -263,6 +266,36 @@
 <span class="p">}</span>
 </pre></div>
 </div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>On <strong>Windows</strong>, <code class="docutils literal notranslate"><span class="pre">onsemi.git.useWindowsSchannel</span></code> is enabled by default and
+makes Git and West validate certificates against the Windows certificate
+store, which often resolves corporate proxy / custom-CA failures without a
+certificate bundle. Leave it enabled unless you specifically need the
+OpenSSL backend.</p>
+</div>
+</section>
+<section id="toolchain-download-requires-authorized-onsemi-access">
+<h3>Toolchain Download Requires Authorized onsemi Access<a class="headerlink" href="#toolchain-download-requires-authorized-onsemi-access" title="Link to this heading"></a></h3>
+<p><strong>Symptom</strong>: A toolchain (for example, a custom toolchain) is listed as
+<strong>skipped</strong> on the setup wizard’s Finish step with a note that it requires
+authorized onsemi access.</p>
+<p><strong>Solution</strong>: The tool declares <code class="docutils literal notranslate"><span class="pre">&quot;auth&quot;:</span> <span class="pre">&quot;github&quot;</span></code> in <code class="docutils literal notranslate"><span class="pre">tools.json</span></code> and could
+not be downloaded because sign-in was cancelled or your account lacks access.
+Other tools continue installing normally. Once you have authorized onsemi
+access, re-run the Workspace and Tools Setup wizard to install the skipped
+toolchains.</p>
+</section>
+<section id="toolchain-extraction-fails-with-eperm">
+<h3>Toolchain Extraction Fails with <code class="docutils literal notranslate"><span class="pre">EPERM</span></code><a class="headerlink" href="#toolchain-extraction-fails-with-eperm" title="Link to this heading"></a></h3>
+<p><strong>Symptom</strong>: Installing a toolchain fails with <code class="docutils literal notranslate"><span class="pre">EPERM:</span> <span class="pre">operation</span> <span class="pre">not</span> <span class="pre">permitted,</span>
+<span class="pre">rename</span> <span class="pre">…</span></code>.</p>
+<p><strong>Solution</strong>: This is usually caused by antivirus / search-indexer scanning or a
+leftover destination from a previous attempt transiently locking a file. The
+extractor now clears any pre-existing destination, retries transient locks, and
+falls back to copy + delete for cross-volume moves. If it still fails,
+temporarily exclude the install directory from antivirus scanning and retry the
+install.</p>
 </section>
 <section id="j-link-gdb-server-not-found">
 <h3>J-Link GDB Server Not Found<a class="headerlink" href="#j-link-gdb-server-not-found" title="Link to this heading"></a></h3>
@@ -272,6 +305,17 @@
 <li><p>Add J-Link installation directory to system PATH</p></li>
 <li><p>Or manually specify the path in Debug Configuration → Target Tab</p></li>
 </ol>
+</section>
+<section id="j-link-version-warning">
+<h3>J-Link Version Warning<a class="headerlink" href="#j-link-version-warning" title="Link to this heading"></a></h3>
+<p><strong>Symptom</strong>: A non-blocking banner in the Debug Configuration panel (or a
+notification when running <code class="docutils literal notranslate"><span class="pre">west</span> <span class="pre">flash</span></code>) states that J-Link is missing or older
+than the version recommended by the active SDK.</p>
+<p><strong>Solution</strong>: The active SDK declares a recommended minimum via <code class="docutils literal notranslate"><span class="pre">minJLinkVersion</span></code>
+in its <code class="docutils literal notranslate"><span class="pre">sdk.json</span></code>. Install or update J-Link from the SEGGER download page (the
+warning provides a shortcut). Debugging and flashing are never blocked, so you
+can proceed with the installed version if necessary. onsemi Studio auto-selects
+the highest installed J-Link version.</p>
 </section>
 <section id="long-path-errors-on-windows">
 <h3>Long Path Errors on Windows<a class="headerlink" href="#long-path-errors-on-windows" title="Link to this heading"></a></h3>
@@ -313,8 +357,8 @@
 
   <div role="contentinfo">
 <p>
-    &#169; Copyright 2026, Semiconductor Components Industries, LLC.
-    <span class="lastupdated">Last updated on Jul 10, 2026.</span></p>
+    <span class="copyright-text">&#169; Copyright 2026, Semiconductor Components Industries, LLC</span>.
+    <span class="lastupdated">Last updated on Oct 01, 2026.</span></p>
 
   </div>
 
